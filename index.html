@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="to done — Gestioná tareas con IA. Priorizá automáticamente, sabé cuánto tiempo tenés hoy y terminá el día habiendo hecho lo que importa." />
+  <title>to done ✦ — Organizate sin pensar en organizarte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --font-ui: -apple-system, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --bg:               #18191C;
+      --bg2:              #1F2025;
+      --surface:          #252629;
+      --surface-elevated: #2C2D32;
+      --border:           #38393F;
+      --border-subtle:    #2E2F35;
+      --text:             #EDEAE5;
+      --text-secondary:   #C4BDB2;
+      --text-muted:       #8E8880;
+      --coral:  #E07A5F;
+      --gold:   #E6AA68;
+      --green:  #81B29A;
+      --violet: #BB6BD9;
+      --blue:   #56CCF2;
+      --grad:   linear-gradient(135deg, #E07A5F 0%, #E6AA68 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-ui);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.022;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    :focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; border-radius: 6px; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 60px; padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      backdrop-filter: blur(20px) saturate(1.3);
+      -webkit-backdrop-filter: blur(20px) saturate(1.3);
+      background: rgba(24,25,28,0.8);
+      border-bottom: 1px solid rgba(56,57,63,0.5);
+    }
+    .nav-left  { display: flex; align-items: center; gap: 4px; }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 800; font-size: 22px; letter-spacing: -0.5px;
+      text-decoration: none; margin-right: 10px;
+      display: flex; align-items: baseline;
+    }
+    .nav-logo-to   { color: var(--text); }
+    .nav-logo-done { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-logo-star { color: var(--coral); font-size: 9px; vertical-align: super; margin-left: 1px; }
+
+    .nav-link {
+      font-family: var(--font-ui); font-size: 13.5px; font-weight: 500;
+      color: var(--text-muted); text-decoration: none;
+      padding: 6px 12px; border-radius: 8px;
+      transition: color 0.18s, background 0.18s;
+    }
+    .nav-link:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+
+    .btn-primary {
+      background: var(--grad); color: #fff;
+      font-family: var(--font-ui); font-weight: 600; font-size: 14px;
+      padding: 10px 20px; border-radius: 12px; border: none; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; white-space: nowrap;
+      transition: transform 0.18s, box-shadow 0.18s;
+      box-shadow: 0 4px 20px rgba(224,122,95,0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(224,122,95,0.42); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-ghost {
+      background: transparent; color: var(--text-secondary);
+      font-family: var(--font-ui); font-weight: 500; font-size: 14px;
+      padding: 9px 18px; border-radius: 12px; border: 1px solid var(--border);
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center;
+      transition: border-color 0.18s, color 0.18s, background 0.18s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.18); color: var(--text); background: rgba(255,255,255,0.04); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute; width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(224,122,95,0.10) 0%, transparent 68%);
+      top: 45%; left: 50%; transform: translate(-50%,-55%); pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(129,178,154,0.09); border: 1px solid rgba(129,178,154,0.22);
+      color: var(--green); font-family: var(--font-ui); font-size: 12px; font-weight: 600;
+      padding: 5px 14px; border-radius: 40px; margin-bottom: 28px;
+      animation: fadeUp 0.55s ease both;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px; background: var(--green); border-radius: 50%;
+      animation: pulse 2.4s ease infinite; flex-shrink: 0;
+    }
+
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.75)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes wordUp {
+      0%  { opacity:0; transform:translateY(28px); }
+      60% { opacity:1; transform:translateY(-4px); }
+      100%{ opacity:1; transform:translateY(0); }
+    }
+    @keyframes todoIn { from{opacity:0;transform:translateX(-8px)} to{opacity:1;transform:translateX(0)} }
+
+    .hero-headline {
+      font-family: var(--font-ui); font-weight: 700;
+      font-size: clamp(44px,6.2vw,82px);
+      line-height: 1.06; letter-spacing: -2px;
+      color: var(--text); max-width: 800px;
+    }
+    .hero-word {
+      display: inline-block;
+      opacity: 0; transform: translateY(28px);
+      animation: wordUp 0.5s ease forwards;
+    }
+    .hero-word:nth-child(1) { animation-delay: 0.05s; }
+    .hero-word:nth-child(2) { animation-delay: 0.15s; }
+    .hero-word:nth-child(3) { animation-delay: 0.25s; }
+    .accent-wrap { display: inline-block; opacity: 0; animation: fadeUp 0.5s 0.42s ease forwards; }
+    .hero-headline .accent {
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .hero-sub {
+      font-family: var(--font-ui); font-size: clamp(15px,1.9vw,17px);
+      color: var(--text-secondary); max-width: 400px;
+      margin: 20px auto 0; line-height: 1.7;
+      opacity: 0; animation: fadeUp 0.55s 0.5s ease forwards;
+    }
+
+    /* HERO TODO WIDGET */
+    .hero-todo {
+      margin-top: 36px; width: 100%; max-width: 300px;
+      display: flex; flex-direction: column; gap: 7px;
+      opacity: 0; animation: fadeUp 0.5s 0.7s ease forwards;
+    }
+
+    .todo-item {
+      display: flex; align-items: center; gap: 11px;
+      background: rgba(44,45,50,0.75);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px; padding: 10px 13px;
+      opacity: 0; transform: translateX(-8px);
+      backdrop-filter: blur(8px);
+      transition: border-color 0.3s, background 0.3s, opacity 0.3s;
+    }
+    .todo-item.show    { animation: todoIn 0.32s ease forwards; }
+    .todo-item.checking{ border-color: rgba(129,178,154,0.25); }
+    .todo-item.checked { border-color: transparent; background: rgba(44,45,50,0.3); }
+
+    .todo-check {
+      width: 17px; height: 17px; border-radius: 5px;
+      border: 1.5px solid var(--border); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .todo-check::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--green); border-radius: 4px;
+      transform: scale(0);
+      transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .todo-item.checking .todo-check { border-color: var(--green); }
+    .todo-item.checked  .todo-check { border-color: var(--green); }
+    .todo-item.checked  .todo-check::after { transform: scale(1); }
+
+    .todo-check-icon {
+      position: relative; z-index: 1;
+      color: #fff; font-size: 9px;
+      opacity: 0; transition: opacity 0.15s 0.18s;
+    }
+    .todo-item.checked .todo-check-icon { opacity: 1; }
+
+    .todo-label {
+      font-family: var(--font-ui); font-size: 13px;
+      color: var(--text-secondary); letter-spacing: -0.1px;
+      flex: 1; text-align: left;
+      position: relative; transition: color 0.3s;
+    }
+    .todo-label::after {
+      content: ''; position: absolute; left: 0; top: 50%;
+      width: 0; height: 1px; background: var(--text-muted);
+      transition: width 0.32s ease;
+    }
+    .todo-item.checked .todo-label { color: var(--text-muted); }
+    .todo-item.checked .todo-label::after { width: 100%; }
+
+    .todo-pill {
+      font-family: var(--font-ui); font-size: 10px; font-weight: 600;
+      padding: 2px 7px; border-radius: 20px; flex-shrink: 0;
+      transition: opacity 0.3s;
+    }
+    .todo-item.checked .todo-pill { opacity: 0.3; }
+    .pill-high { background: rgba(224,122,95,0.14); color: var(--coral); }
+    .pill-med  { background: rgba(230,170,104,0.14); color: var(--gold); }
+    .pill-low  { background: rgba(129,178,154,0.12); color: var(--green); }
+
+    /* HERO FORM */
+    .hero-form {
+      display: flex; align-items: stretch;
+      margin-top: 28px; width: 100%; max-width: 420px;
+      background: var(--surface-elevated); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      opacity: 0; animation: fadeUp 0.55s 0.85s ease forwards;
+    }
+    .hero-form:focus-within { border-color: var(--coral); box-shadow: 0 0 0 3px rgba(224,122,95,0.14); }
+    .hero-form label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+    .hero-input {
+      flex: 1; min-width: 0; background: transparent; border: none; outline: none;
+      color: var(--text); font-family: var(--font-ui); font-size: 14px; padding: 13px 16px;
+    }
+    .hero-input::placeholder { color: var(--text-muted); }
+    .hero-form .btn-primary { border-radius: 0; box-shadow: none; padding: 13px 20px; font-size: 14px; }
+    .hero-form .btn-primary:hover { transform: none; box-shadow: none; }
+
+    /* MOCKUP */
+    .preview-section { padding: 0 24px 90px; display: flex; justify-content: center; }
+    .app-mockup {
+      width: 100%; max-width: 860px;
+      background: var(--surface); border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 -2px 60px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06);
+      overflow: hidden; animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .mockup-bar {
+      display: flex; align-items: center; gap: 7px;
+      padding: 12px 16px; border-bottom: 1px solid var(--border-subtle);
+      background: rgba(255,255,255,0.015);
+    }
+    .mockup-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .mockup-dot.r{background:#FF5F57} .mockup-dot.y{background:#FEBC2E} .mockup-dot.g{background:#28C840}
+    .mockup-title { font-family: var(--font-ui); font-size: 12px; color: var(--text-muted); margin: 0 auto; font-weight: 500; }
+    .mockup-body { display: flex; min-height: 390px; }
+
+    .mockup-sidebar { width: 188px; border-right: 1px solid var(--border-subtle); padding: 16px 0; flex-shrink: 0; }
+    .sidebar-label { font-family: var(--font-ui); font-size: 10px; font-weight: 700; letter-spacing: 0.8px; color: var(--text-muted); padding: 0 14px; margin-bottom: 6px; text-transform: uppercase; }
+    .sidebar-item  { display: flex; align-items: center; gap: 9px; padding: 7px 14px; font-family: var(--font-ui); font-size: 13px; color: var(--text-secondary); position: relative; }
+    .sidebar-item.active { background: rgba(224,122,95,0.08); color: var(--coral); }
+    .sidebar-item.active::before { content:''; position:absolute; left:0; top:4px; bottom:4px; width:3px; background:var(--coral); border-radius:0 3px 3px 0; }
+    .sidebar-icon { font-size: 14px; width: 17px; text-align: center; }
+
+    .streak-card { margin: 14px 10px 0; background: rgba(224,122,95,0.07); border: 1px solid rgba(224,122,95,0.16); border-radius: 12px; padding: 10px 12px; }
+    .streak-top  { font-family: var(--font-ui); font-size: 11px; color: var(--coral); font-weight: 600; }
+    .streak-days { font-family: var(--font-ui); font-size: 20px; font-weight: 700; color: var(--text); line-height: 1.2; }
+    .streak-sub  { font-family: var(--font-ui); font-size: 10px; color: var(--text-muted); }
+
+    .mockup-main { flex: 1; padding: 18px 20px; }
+    .day-progress { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .day-label    { font-family: var(--font-ui); font-size: 11.5px; color: var(--text-muted); font-weight: 500; white-space: nowrap; }
+    .progress-bar { flex: 1; height: 5px; background: var(--surface-elevated); border-radius: 20px; overflow: hidden; }
+    .progress-fill{ height: 100%; width: 62%; background: var(--grad); border-radius: 20px; animation: fillBar 1.4s 1s ease both; }
+    @keyframes fillBar { from{width:0} to{width:62%} }
+    .progress-pct { font-family: var(--font-ui); font-size: 11.5px; color: var(--gold); font-weight: 600; }
+
+    .tasks-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .tasks-title  { font-family: var(--font-ui); font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); }
+    .tasks-count  { font-family: var(--font-ui); font-size: 10px; background: var(--surface-elevated); color: var(--text-muted); padding: 2px 8px; border-radius: 40px; }
+
+    .task-item   { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: var(--surface-elevated); border-radius: 8px; margin-bottom: 5px; border: 1px solid transparent; transition: border-color 0.15s; }
+    .task-item:hover { border-color: var(--border); }
+    .task-item.done  { opacity: 0.42; }
+    .task-check { width: 17px; height: 17px; border-radius: 5px; border: 1.5px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+    .task-check.checked { background: var(--green); border-color: var(--green); color: #fff; }
+    .task-text  { flex: 1; font-family: var(--font-ui); font-size: 13px; color: var(--text); }
+    .task-text.striked { text-decoration: line-through; color: var(--text-muted); }
+    .task-tags  { display: flex; gap: 4px; }
+    .tag { font-family: var(--font-ui); font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 40px; }
+    .tag.high { background: rgba(224,122,95,0.14); color: var(--coral); }
+    .tag.med  { background: rgba(230,170,104,0.14); color: var(--gold); }
+    .tag.time { background: rgba(86,204,242,0.10);  color: var(--blue); }
+
+    .ai-suggestion { display: flex; align-items: flex-start; gap: 9px; padding: 11px 12px; background: rgba(86,204,242,0.05); border: 1px solid rgba(86,204,242,0.16); border-radius: 8px; margin-top: 10px; }
+    .ai-icon { font-size: 14px; flex-shrink: 0; }
+    .ai-text { font-family: var(--font-ui); font-size: 12px; color: var(--blue); line-height: 1.55; }
+    .ai-text strong { color: #7DD8F5; font-weight: 600; }
+
+    /* SECTIONS */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1060px; margin: 0 auto; }
+    .section-label { font-family: var(--font-ui); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--coral); margin-bottom: 14px; }
+    .section-title { font-family: var(--font-ui); font-weight: 700; font-size: clamp(28px,3.8vw,46px); line-height: 1.1; letter-spacing: -1px; color: var(--text); max-width: 600px; }
+    .section-title .accent { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* FEATURES */
+    .features-grid { display: grid; grid-template-columns: repeat(2,1fr); grid-template-rows: auto 1fr 1fr; gap: 18px; margin-top: 44px; }
+    .feature-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+      padding: 28px; display: flex; flex-direction: column;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.04);
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .feature-card:hover { transform: translateY(-3px); border-color: rgba(224,122,95,0.28); box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(224,122,95,0.12); }
+    .feature-card.wide { grid-column: span 2; grid-row: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; flex-direction: unset; }
+
+    .feature-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 19px; margin-bottom: 18px; flex-shrink: 0; }
+    .fi-coral  { background: rgba(224,122,95,0.12); }
+    .fi-blue   { background: rgba(86,204,242,0.09); }
+    .fi-violet { background: rgba(187,107,217,0.09); }
+    .fi-green  { background: rgba(129,178,154,0.09); }
+    .fi-gold   { background: rgba(230,170,104,0.09); }
+
+    .feature-title { font-family: var(--font-ui); font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: -0.3px; }
+    .feature-text  { font-family: var(--font-ui); font-size: 14px; color: var(--text-secondary); line-height: 1.68; flex: 1; }
+
+    .quick-input-demo { background: var(--bg); border-radius: 12px; padding: 18px; border: 1px solid var(--border-subtle); }
+    .qd-label { font-family: var(--font-ui); font-size: 10px; color: var(--text-muted); margin-bottom: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; }
+    .qd-line  { font-family: var(--font-ui); font-size: 13px; color: var(--text-secondary); padding: 8px 0; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .qd-line:last-child { border: none; padding-bottom: 0; }
+    .qd-result { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+    .qd-tag { font-family: var(--font-ui); font-size: 10px; padding: 2px 7px; border-radius: 40px; font-weight: 600; }
+    .qd-tag.c { background: rgba(224,122,95,0.14); color: var(--coral); }
+    .qd-tag.t { background: rgba(86,204,242,0.10);  color: var(--blue); }
+    .qd-tag.d { background: rgba(230,170,104,0.10); color: var(--gold); }
+
+    /* COMPARISON */
+    .comparison-section { background: var(--bg2); }
+    .compare-table { width: 100%; border-collapse: collapse; margin-top: 44px; font-size: 14px; }
+    .compare-table th { text-align: left; padding: 12px 20px; color: var(--text-muted); font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.3px; border-bottom: 1px solid var(--border); }
+    .compare-table th.highlight { color: var(--coral); font-size: 14px; letter-spacing: 0; font-weight: 700; }
+    .compare-table td { padding: 13px 20px; color: var(--text-secondary); font-family: var(--font-ui); border-bottom: 1px solid rgba(56,57,63,0.45); vertical-align: middle; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td.feature-name { color: var(--text); font-weight: 500; }
+    .compare-table td.yes     { color: var(--green);  font-weight: 600; }
+    .compare-table td.no      { color: var(--border); }
+    .compare-table td.partial { color: var(--gold);   }
+    .compare-table .col-todone { background: rgba(224,122,95,0.035); }
+    .compare-table tbody tr:hover td { background: rgba(255,255,255,0.018); }
+
+    /* PRICING */
+    .pricing-section { background: var(--bg); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 44px; align-items: stretch; }
+    .pricing-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+      padding: 30px 26px; position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.04);
+    }
+    .pricing-card.featured {
+      border-color: rgba(224,122,95,0.4);
+      background: linear-gradient(160deg, rgba(224,122,95,0.065) 0%, var(--surface) 55%);
+      box-shadow: 0 0 0 1px rgba(224,122,95,0.2), 0 4px 32px rgba(0,0,0,0.3);
+    }
+    .pricing-card.featured::before {
+      content: 'Recomendado';
+      position: absolute; top: 16px; right: 16px;
+      font-family: var(--font-ui); font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
+      color: var(--coral); background: rgba(224,122,95,0.1);
+      border: 1px solid rgba(224,122,95,0.22); padding: 3px 10px; border-radius: 40px;
+    }
+    .plan-name   { font-family: var(--font-ui); font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+    .plan-price  { font-family: var(--font-ui); font-weight: 700; font-size: 52px; line-height: 1; color: var(--text); }
+    .plan-price.grad   { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .plan-price.custom { font-size: 52px; letter-spacing: -1px; }
+    .plan-period { font-family: var(--font-ui); font-size: 12px; color: var(--text-muted); margin: 6px 0 16px; }
+    .plan-desc   { font-family: var(--font-ui); font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.65; }
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; flex: 1; }
+    .plan-features li { display: flex; align-items: flex-start; gap: 9px; font-family: var(--font-ui); font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+    .plan-features .check { color: var(--green); flex-shrink: 0; margin-top: 1px; }
+    .plan-features .x     { color: var(--border); flex-shrink: 0; margin-top: 1px; }
+    .plan-cta-wrap { margin-top: auto; }
+    .plan-cta { display: flex; width: 100%; justify-content: center; padding: 13px; font-size: 14px; border-radius: 12px; }
+    .plan-cta-outline {
+      display: block; width: 100%; text-align: center; padding: 12px; font-size: 14px; border-radius: 12px;
+      background: transparent; border: 1px solid var(--border); color: var(--text-secondary);
+      text-decoration: none; font-family: var(--font-ui); font-weight: 500;
+      transition: border-color 0.18s, color 0.18s, background 0.18s;
+    }
+    .plan-cta-outline:hover { border-color: rgba(255,255,255,0.2); color: var(--text); background: rgba(255,255,255,0.04); }
+    .plan-note { font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); margin-top: 10px; text-align: center; line-height: 1.5; }
+
+    /* FINAL CTA */
+    .final-cta { background: var(--bg2); text-align: center; padding: 96px 24px; position: relative; overflow: hidden; }
+    .final-cta::before {
+      content: ''; position: absolute; width: 600px; height: 600px;
+      background: radial-gradient(ellipse, rgba(224,122,95,0.08) 0%, transparent 65%);
+      top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none;
+    }
+    .final-cta-headline { font-family: var(--font-ui); font-weight: 700; font-size: clamp(30px,4.2vw,54px); line-height: 1.08; letter-spacing: -1.5px; color: var(--text); max-width: 520px; margin: 0 auto 14px; }
+    .final-cta-headline .accent { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .final-cta-sub { font-family: var(--font-ui); font-size: 16px; color: var(--text-secondary); margin-bottom: 36px; }
+    .final-cta-form {
+      display: flex; align-items: stretch; max-width: 400px; margin: 0 auto;
+      background: var(--surface-elevated); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .final-cta-form:focus-within { border-color: var(--coral); box-shadow: 0 0 0 3px rgba(224,122,95,0.14); }
+    .final-cta-form label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+    .final-cta-form input { flex: 1; min-width: 0; background: transparent; border: none; outline: none; color: var(--text); font-family: var(--font-ui); font-size: 14px; padding: 13px 16px; }
+    .final-cta-form input::placeholder { color: var(--text-muted); }
+    .final-cta-form .btn-primary { border-radius: 0; box-shadow: none; }
+    .final-cta-form .btn-primary:hover { transform: none; box-shadow: none; }
+
+    /* FOOTER */
+    footer { padding: 32px 24px; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; max-width: 1060px; margin: 0 auto; }
+    .footer-logo { font-family: var(--font-display); font-weight: 800; font-size: 19px; }
+    .footer-logo-to   { color: var(--text); }
+    .footer-logo-done { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .footer-logo-star { color: var(--coral); font-size: 9px; vertical-align: super; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-family: var(--font-ui); font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.18s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { font-family: var(--font-ui); font-size: 12px; color: var(--text-muted); }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity: 1; transform: none; }
+    .js-ready .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .js-ready .reveal.visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    @media (max-width: 860px) {
+      .pricing-grid { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      .nav-link { display: none; }
+      section { padding: 60px 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .hero-form, .final-cta-form { flex-direction: column; }
+      .hero-form .btn-primary, .final-cta-form .btn-primary { border-radius: 0 0 12px 12px; width: 100%; justify-content: center; padding: 14px; }
+      .hero-input, .final-cta-form input { border-radius: 12px 12px 0 0; }
+      .features-grid { grid-template-columns: 1fr; }
+      .feature-card.wide { grid-column: span 1; display: flex; flex-direction: column; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .mockup-sidebar { display: none; }
+      .compare-table { font-size: 13px; }
+      .compare-table th, .compare-table td { padding: 10px 12px; }
+    }
+    @media (max-width: 480px) {
+      .hero-headline { font-size: 38px; }
+      .final-cta-headline { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-to">to </span><span class="nav-logo-done">done</span><span class="nav-logo-star">✦</span>
+    </a>
+    <a href="#features" class="nav-link" onclick="smoothTo(event,'features')">Producto</a>
+    <a href="#precios" class="nav-link" onclick="smoothTo(event,'precios')">Planes</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://app.todone.com.ar" class="btn-ghost">Ingresar</a>
+    <a href="#registro" class="btn-primary" onclick="smoothTo(event,'registro')">Empezar gratis &rarr;</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="registro">
+  <div class="hero-glow"></div>
+
+  <div class="hero-badge">
+    <span class="dot"></span>
+    Empezá gratis, sin tarjeta de crédito
+  </div>
+
+  <h1 class="hero-headline">
+    <span class="hero-word">Tenés</span>
+    <span class="hero-word">40</span>
+    <span class="hero-word">tareas.</span>
+    <br/>
+    <span class="accent-wrap"><span class="accent">¿Por dónde empezás?</span></span>
+  </h1>
+
+  <p class="hero-sub">
+    La IA prioriza, avisa cuando el día se llena y te dice qué hacer primero.
+  </p>
+
+  <div class="hero-todo" id="heroTodo" aria-hidden="true">
+    <div class="todo-item" data-delay="0">
+      <div class="todo-check"><span class="todo-check-icon">&#10003;</span></div>
+      <span class="todo-label">Terminar propuesta cliente</span>
+      <span class="todo-pill pill-high">Alta</span>
+    </div>
+    <div class="todo-item" data-delay="150">
+      <div class="todo-check"><span class="todo-check-icon">&#10003;</span></div>
+      <span class="todo-label">Llamar a proveedor &middot; 15 min</span>
+      <span class="todo-pill pill-med">Media</span>
+    </div>
+    <div class="todo-item" data-delay="300">
+      <div class="todo-check"><span class="todo-check-icon">&#10003;</span></div>
+      <span class="todo-label">Revisar contratos</span>
+      <span class="todo-pill pill-low">Baja</span>
+    </div>
+  </div>
+
+  <form class="hero-form" onsubmit="handleSubmit(event)" novalidate>
+    <label for="email-hero">Tu email</label>
+    <input id="email-hero" class="hero-input" type="email" placeholder="tu@email.com" required autocomplete="email" />
+    <button type="submit" class="btn-primary">Empezar gratis &rarr;</button>
+  </form>
+</section>
+
+<!-- MOCKUP -->
+<div class="preview-section">
+  <div class="app-mockup">
+    <div class="mockup-bar">
+      <div class="mockup-dot r"></div>
+      <div class="mockup-dot y"></div>
+      <div class="mockup-dot g"></div>
+      <span class="mockup-title">to done &mdash; Hoy</span>
+    </div>
+    <div class="mockup-body">
+      <div class="mockup-sidebar">
+        <div class="sidebar-label">Mis listas</div>
+        <div class="sidebar-item active"><span class="sidebar-icon">&#128197;</span> Hoy</div>
+        <div class="sidebar-item"><span class="sidebar-icon">&#128203;</span> Esta semana</div>
+        <div class="sidebar-item"><span class="sidebar-icon">&#128230;</span> Sin fecha</div>
+        <div class="sidebar-item"><span class="sidebar-icon">&#128161;</span> Ideas</div>
+        <div class="streak-card">
+          <div class="streak-top">&#128293; Racha</div>
+          <div class="streak-days">7 días</div>
+          <div class="streak-sub">¡Seguís!</div>
+        </div>
+      </div>
+      <div class="mockup-main">
+        <div class="day-progress">
+          <span class="day-label">Hoy &middot; 5h 30min</span>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+          <span class="progress-pct">62%</span>
+        </div>
+        <div class="tasks-header">
+          <span class="tasks-title">Pendiente</span>
+          <span class="tasks-count">5 tareas</span>
+        </div>
+        <div class="task-item done">
+          <div class="task-check checked">&#10003;</div>
+          <span class="task-text striked">Revisar propuesta con el equipo</span>
+          <div class="task-tags"><span class="tag time">45 min</span></div>
+        </div>
+        <div class="task-item done">
+          <div class="task-check checked">&#10003;</div>
+          <span class="task-text striked">Responder emails urgentes</span>
+          <div class="task-tags"><span class="tag time">30 min</span></div>
+        </div>
+        <div class="task-item">
+          <div class="task-check"></div>
+          <span class="task-text">Llamar a proveedor antes de las 18h</span>
+          <div class="task-tags"><span class="tag high">Alta</span><span class="tag time">15 min</span></div>
+        </div>
+        <div class="task-item">
+          <div class="task-check"></div>
+          <span class="task-text">Terminar deck para inversores</span>
+          <div class="task-tags"><span class="tag high">Alta</span><span class="tag time">2h</span></div>
+        </div>
+        <div class="task-item">
+          <div class="task-check"></div>
+          <span class="task-text">Actualizar roadmap del producto</span>
+          <div class="task-tags"><span class="tag med">Media</span><span class="tag time">1h</span></div>
+        </div>
+        <div class="ai-suggestion">
+          <span class="ai-icon">&#9889;</span>
+          <span class="ai-text"><strong>IA:</strong> Tenés 8h 20min programadas para hoy. ¿Movemos "Actualizar roadmap" para mañana?</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <p class="section-label reveal">Funcionalidades</p>
+    <h2 class="section-title reveal">Pensado para quien<br/><span class="accent">trabaja a mil.</span></h2>
+    <div class="features-grid">
+
+      <div class="feature-card wide reveal">
+        <div>
+          <div class="feature-icon fi-coral">&#9889;</div>
+          <h3 class="feature-title">Volcado rápido con IA</h3>
+          <p class="feature-text">Escribís todo lo que tenés en la cabeza de un golpe. La IA detecta prioridad, tiempo y fecha sola &mdash; sin completar ningún campo.</p>
+        </div>
+        <div class="quick-input-demo">
+          <div class="qd-label">Escribís &rarr; la IA organiza</div>
+          <div class="qd-line">
+            <span>Llamar a Juan mañana 30min</span>
+            <div class="qd-result"><span class="qd-tag c">Media</span><span class="qd-tag t">30 min</span><span class="qd-tag d">Mañana</span></div>
+          </div>
+          <div class="qd-line">
+            <span>Entregar informe URGENTE hoy</span>
+            <div class="qd-result"><span class="qd-tag c" style="background:rgba(224,122,95,0.2)">Alta</span><span class="qd-tag d">Hoy</span></div>
+          </div>
+          <div class="qd-line">
+            <span>Revisar contratos cuando pueda</span>
+            <div class="qd-result">
+              <span class="qd-tag" style="background:rgba(129,178,154,0.12);color:var(--green)">Baja</span>
+              <span class="qd-tag d" style="color:var(--text-muted)">Sin fecha</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="feature-icon fi-blue">&#128202;</div>
+        <h3 class="feature-title">Carga del día en tiempo real</h3>
+        <p class="feature-text">Te dice cuánto tiempo programaste hoy. Si te pasás, te avisa y sugiere qué mover &mdash; sin que vos tengas que calcularlo.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="feature-icon fi-violet">&#128194;</div>
+        <h3 class="feature-title">Canvas visual lateral</h3>
+        <p class="feature-text">Espacio infinito de notas adhesivas para pensar y mapear ideas &mdash; al costado de tu lista, sin salir de la app.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="feature-icon fi-gold">&#128293;</div>
+        <h3 class="feature-title">Racha y gamificación</h3>
+        <p class="feature-text">Hay días que cerrás la laptop sintiendo que hiciste todo. to done te ayuda a tener más de esos días &mdash; y a no olvidar la racha cuando más lo necesitás.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="feature-icon fi-green">&#129309;</div>
+        <h3 class="feature-title">Compartí, delegá y hacé seguimiento</h3>
+        <p class="feature-text">Asigná tareas a tu equipo, delegá con un toque y seguí el avance sin reuniones de status. Todo dentro de to done.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison-section">
+  <div class="section-inner">
+    <p class="section-label reveal">Por qué to done</p>
+    <h2 class="section-title reveal">Hace lo que<br/><span class="accent">el resto no hace.</span></h2>
+    <table class="compare-table reveal">
+      <thead>
+        <tr>
+          <th scope="col">Funcionalidad</th>
+          <th scope="col" class="highlight">to done ✦</th>
+          <th scope="col">Otras apps</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="feature-name">IA que interpreta lenguaje natural</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">Parcial o no</td></tr>
+        <tr><td class="feature-name">Estimación de carga del día</td><td class="col-todone yes">&#10003; Sí</td><td class="no">&mdash;</td></tr>
+        <tr><td class="feature-name">Alerta de sobrecarga</td><td class="col-todone yes">&#10003; Sí</td><td class="no">&mdash;</td></tr>
+        <tr><td class="feature-name">Volcado rápido con IA</td><td class="col-todone yes">&#10003; Sí</td><td class="no">&mdash;</td></tr>
+        <tr><td class="feature-name">Canvas visual integrado</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">Solo algunos</td></tr>
+        <tr><td class="feature-name">Plan gratuito real</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">Freemium limitado</td></tr>
+        <tr><td class="feature-name">Compartir y delegar tareas</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">No siempre</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="precios" class="pricing-section">
+  <div class="section-inner">
+    <p class="section-label reveal" style="text-align:center;">Planes</p>
+    <h2 class="section-title reveal" style="margin:0 auto;text-align:center;">Empezá gratis.<br/><span class="accent">Crecé cuando quieras.</span></h2>
+    <div class="pricing-grid">
+
+      <div class="pricing-card reveal">
+        <p class="plan-name">Free</p>
+        <div class="plan-price">$0</div>
+        <p class="plan-period">USD &middot; para siempre</p>
+        <p class="plan-desc">Para empezar a organizarte sin comprometer nada.</p>
+        <ul class="plan-features">
+          <li><span class="check">&#10003;</span> Tareas y subtareas</li>
+          <li><span class="check">&#10003;</span> Vista de hoy y esta semana</li>
+          <li><span class="check">&#10003;</span> IA básica para interpretar tareas</li>
+          <li><span class="check">&#10003;</span> Racha y gamificación</li>
+          <li><span class="x">&mdash;</span> Canvas visual</li>
+          <li><span class="x">&mdash;</span> Volcado rápido con IA</li>
+          <li><span class="x">&mdash;</span> Alertas de sobrecarga</li>
+        </ul>
+        <div class="plan-cta-wrap">
+          <a href="https://app.todone.com.ar" class="plan-cta-outline">Empezar gratis</a>
+        </div>
+      </div>
+
+      <div class="pricing-card featured reveal">
+        <p class="plan-name">Pro</p>
+        <div class="plan-price grad">$9.99</div>
+        <p class="plan-period">USD &middot; por mes &middot; facturación anual</p>
+        <p class="plan-desc">El sistema completo para individuos que trabajan en serio.</p>
+        <ul class="plan-features">
+          <li><span class="check">&#10003;</span> Todo lo del plan Free</li>
+          <li><span class="check">&#10003;</span> Canvas visual ilimitado</li>
+          <li><span class="check">&#10003;</span> Volcado rápido con IA</li>
+          <li><span class="check">&#10003;</span> Alertas de sobrecarga diaria</li>
+          <li><span class="check">&#10003;</span> Listas ilimitadas</li>
+          <li><span class="check">&#10003;</span> Soporte prioritario</li>
+        </ul>
+        <div class="plan-cta-wrap">
+          <a href="https://app.todone.com.ar" class="btn-primary plan-cta">Empezar con Pro &rarr;</a>
+          <p class="plan-note">Sin permanencia. Cancelás cuando querés.</p>
+        </div>
+      </div>
+
+      <div class="pricing-card reveal">
+        <p class="plan-name">Equipos</p>
+        <div class="plan-price custom">Custom</div>
+        <p class="plan-period">USD &middot; hablamos según tu equipo</p>
+        <p class="plan-desc">Gestión centralizada, reportes y soporte dedicado para tu equipo.</p>
+        <ul class="plan-features">
+          <li><span class="check">&#10003;</span> Todo lo del plan Pro</li>
+          <li><span class="check">&#10003;</span> Gestión de usuarios y roles</li>
+          <li><span class="check">&#10003;</span> Reportes del equipo</li>
+          <li><span class="check">&#10003;</span> Onboarding personalizado</li>
+          <li><span class="check">&#10003;</span> SLA y soporte dedicado</li>
+        </ul>
+        <div class="plan-cta-wrap">
+          <a href="mailto:hola@todone.com.ar" class="plan-cta-outline">Hablar con ventas &rarr;</a>
+          <p class="plan-note">Desde 5 personas.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2 class="final-cta-headline reveal">Empezá hoy,<br/><span class="accent">es gratis.</span></h2>
+  <p class="final-cta-sub reveal">Sin instalación. Sin tarjeta. Abrís y empezás.</p>
+  <form class="final-cta-form reveal" onsubmit="handleSubmit(event)" novalidate>
+    <label for="email-footer">Tu email</label>
+    <input id="email-footer" type="email" placeholder="tu@email.com" required autocomplete="email" />
+    <button type="submit" class="btn-primary">Empezar &rarr;</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">
+    <span class="footer-logo-to">to </span><span class="footer-logo-done">done</span><span class="footer-logo-star">✦</span>
+  </span>
+  <div class="footer-links">
+    <a href="/privacy">Privacidad</a>
+    <a href="/terms">Términos</a>
+    <a href="mailto:hola@todone.com.ar">Contacto</a>
+  </div>
+  <span class="footer-copy">Hecho con &#9829; en Latam</span>
+</footer>
+
+<script>
+  function smoothTo(e, id) {
+    e.preventDefault();
+    var el = document.getElementById(id);
+    if (!el) return;
+    var navH = document.querySelector('nav').offsetHeight;
+    var top = el.getBoundingClientRect().top + window.scrollY - navH - 12;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+
+  document.body.classList.add('js-ready');
+
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+  // HERO TODO ANIMATION
+  function runTodoAnimation() {
+    var items = document.querySelectorAll('#heroTodo .todo-item');
+    items.forEach(function(item) {
+      item.classList.remove('checked', 'checking', 'show');
+    });
+    items.forEach(function(item) {
+      var delay = parseInt(item.getAttribute('data-delay')) + 300;
+      setTimeout(function() { item.classList.add('show'); }, delay);
+    });
+    function checkNext(i) {
+      if (i >= items.length) {
+        setTimeout(runTodoAnimation, 2000);
+        return;
+      }
+      setTimeout(function() {
+        items[i].classList.add('checking');
+        setTimeout(function() {
+          items[i].classList.add('checked');
+          checkNext(i + 1);
+        }, 400);
+      }, 900 + i * 750);
+    }
+    checkNext(0);
+  }
+
+  setTimeout(runTodoAnimation, 800);
+
+  // FORM SUBMIT
+  function handleSubmit(e) {
+    e.preventDefault();
+    var form  = e.target;
+    var btn   = form.querySelector('button[type=submit]');
+    var input = form.querySelector('input[type=email]');
+    if (!input.value || !input.checkValidity()) {
+      input.style.outline = '2px solid var(--coral)';
+      input.focus();
+      return;
+    }
+    btn.textContent = '¡Listo!';
+    btn.style.background = 'var(--green)';
+    btn.style.boxShadow  = '0 4px 20px rgba(129,178,154,0.35)';
+    input.disabled = true;
+    btn.disabled   = true;
+    createConfetti();
+    setTimeout(function() {
+      form.innerHTML = '<p style="color:var(--green);font-size:15px;font-weight:600;text-align:center;">&#127881; ¡Te anotamos! Revisá tu email para entrar.</p>';
+    }, 1400);
+  }
+
+  // CONFETTI
+  function createConfetti() {
+    var colors = ['#E07A5F','#E6AA68','#81B29A','#BB6BD9','#56CCF2'];
+    for (var i = 0; i < 38; i++) {
+      (function() {
+        var el = document.createElement('div');
+        el.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;' +
+          'width:'  + (Math.random()*7+4)  + 'px;' +
+          'height:' + (Math.random()*7+4)  + 'px;' +
+          'background:' + colors[Math.floor(Math.random()*colors.length)] + ';' +
+          'border-radius:' + (Math.random()>.5?'50%':'2px') + ';' +
+          'left:' + (Math.random()*100) + 'vw;top:-10px;';
+        document.body.appendChild(el);
+        var dur = Math.random()*1400+700;
+        var x   = (Math.random()-.5)*180;
+        var rot = Math.random()*720;
+        el.animate(
+          [{transform:'translate(0,0) rotate(0deg)',opacity:1},
+           {transform:'translate('+x+'px,100vh) rotate('+rot+'deg)',opacity:0}],
+          {duration:dur, easing:'ease-in', fill:'forwards'}
+        ).onfinish = function() { el.remove(); };
+      })();
+    }
+  }
+</script>
+</body>
+</html>
