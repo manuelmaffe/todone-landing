@@ -490,8 +490,8 @@
     <a href="#precios" class="nav-link" onclick="smoothTo(event,'precios')">Planes</a>
   </div>
   <div class="nav-right">
-    <a href="https://app.todone.com.ar" class="btn-ghost">Ingresar</a>
-    <a href="#registro" class="btn-primary" onclick="smoothTo(event,'registro')">Empezar gratis &rarr;</a>
+    <a href="https://app.todone.com.ar?signup=1" class="btn-ghost">Ingresar</a>
+    <a href="https://app.todone.com.ar?signup=1" class="btn-primary">Empezar gratis &rarr;</a>
   </div>
 </nav>
 
@@ -716,7 +716,7 @@
           <li><span class="x">&mdash;</span> Alertas de sobrecarga</li>
         </ul>
         <div class="plan-cta-wrap">
-          <a href="https://app.todone.com.ar" class="plan-cta-outline">Empezar gratis</a>
+          <a href="https://app.todone.com.ar?signup=1" class="plan-cta-outline">Empezar gratis</a>
         </div>
       </div>
 
@@ -734,7 +734,7 @@
           <li><span class="check">&#10003;</span> Soporte prioritario</li>
         </ul>
         <div class="plan-cta-wrap">
-          <a href="https://app.todone.com.ar" class="btn-primary plan-cta">Empezar con Pro &rarr;</a>
+          <a href="https://app.todone.com.ar?signup=1" class="btn-primary plan-cta">Empezar con Pro &rarr;</a>
           <p class="plan-note">Sin permanencia. Cancelás cuando querés.</p>
         </div>
       </div>
@@ -846,15 +846,10 @@
       input.focus();
       return;
     }
-    btn.textContent = '¡Listo!';
-    btn.style.background = 'var(--green)';
-    btn.style.boxShadow  = '0 4px 20px rgba(129,178,154,0.35)';
-    input.disabled = true;
-    btn.disabled   = true;
     createConfetti();
     setTimeout(function() {
-      form.innerHTML = '<p style="color:var(--green);font-size:15px;font-weight:600;text-align:center;">&#127881; ¡Te anotamos! Revisá tu email para entrar.</p>';
-    }, 1400);
+      window.location.href = 'https://app.todone.com.ar?signup=1';
+    }, 800);
   }
 
   // CONFETTI
