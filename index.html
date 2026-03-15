@@ -23,12 +23,12 @@
       --text:             #EDEAE5;
       --text-secondary:   #C4BDB2;
       --text-muted:       #8E8880;
-      --coral:  #E07A5F;
+      --coral:  #D38B71;
       --gold:   #E6AA68;
       --green:  #81B29A;
       --violet: #BB6BD9;
       --blue:   #56CCF2;
-      --grad:   linear-gradient(135deg, #E07A5F 0%, #E6AA68 100%);
+      --grad:   linear-gradient(135deg, #D38B71 0%, #E6AA68 100%);
     }
 
     html { scroll-behavior: smooth; }
@@ -62,7 +62,7 @@
       backdrop-filter: blur(20px) saturate(1.3);
       -webkit-backdrop-filter: blur(20px) saturate(1.3);
       background: rgba(24,25,28,0.8);
-      border-bottom: 1px solid rgba(56,57,63,0.5);
+      border-bottom: 0.5px solid rgba(56,57,63,0.5);
     }
     .nav-left  { display: flex; align-items: center; gap: 4px; }
     .nav-right { display: flex; align-items: center; gap: 10px; }
@@ -91,9 +91,9 @@
       padding: 10px 20px; border-radius: 12px; border: none; cursor: pointer;
       text-decoration: none; display: inline-flex; align-items: center; white-space: nowrap;
       transition: transform 0.18s, box-shadow 0.18s;
-      box-shadow: 0 4px 20px rgba(224,122,95,0.3);
+      box-shadow: 0 4px 20px rgba(211,139,113,0.3);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(224,122,95,0.42); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(211,139,113,0.42); }
     .btn-primary:active { transform: translateY(0); }
 
     .btn-ghost {
@@ -115,7 +115,7 @@
 
     .hero-glow {
       position: absolute; width: 800px; height: 800px; border-radius: 50%;
-      background: radial-gradient(ellipse, rgba(224,122,95,0.10) 0%, transparent 68%);
+      background: radial-gradient(ellipse, rgba(211,139,113,0.10) 0%, transparent 68%);
       top: 45%; left: 50%; transform: translate(-50%,-55%); pointer-events: none;
     }
 
@@ -231,7 +231,7 @@
       transition: opacity 0.3s;
     }
     .todo-item.checked .todo-pill { opacity: 0.3; }
-    .pill-high { background: rgba(224,122,95,0.14); color: var(--coral); }
+    .pill-high { background: rgba(211,139,113,0.14); color: var(--coral); }
     .pill-med  { background: rgba(230,170,104,0.14); color: var(--gold); }
     .pill-low  { background: rgba(129,178,154,0.12); color: var(--green); }
 
@@ -246,7 +246,7 @@
     .app-mockup {
       width: 100%; max-width: 860px;
       background: var(--surface); border-radius: 20px;
-      border: 1px solid var(--border);
+      border: 0.5px solid var(--border);
       box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 -2px 60px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06);
       overflow: hidden; animation: fadeUp 0.8s 0.4s ease both;
     }
@@ -263,11 +263,11 @@
     .mockup-sidebar { width: 188px; border-right: 1px solid var(--border-subtle); padding: 16px 0; flex-shrink: 0; }
     .sidebar-label { font-family: var(--font-ui); font-size: 10px; font-weight: 700; letter-spacing: 0.8px; color: var(--text-muted); padding: 0 14px; margin-bottom: 6px; text-transform: uppercase; }
     .sidebar-item  { display: flex; align-items: center; gap: 9px; padding: 7px 14px; font-family: var(--font-ui); font-size: 13px; color: var(--text-secondary); position: relative; }
-    .sidebar-item.active { background: rgba(224,122,95,0.08); color: var(--coral); }
+    .sidebar-item.active { background: rgba(211,139,113,0.08); color: var(--coral); }
     .sidebar-item.active::before { content:''; position:absolute; left:0; top:4px; bottom:4px; width:3px; background:var(--coral); border-radius:0 3px 3px 0; }
     .sidebar-icon { font-size: 14px; width: 17px; text-align: center; }
 
-    .streak-card { margin: 14px 10px 0; background: rgba(224,122,95,0.07); border: 1px solid rgba(224,122,95,0.16); border-radius: 12px; padding: 10px 12px; }
+    .streak-card { margin: 14px 10px 0; background: rgba(211,139,113,0.07); border: 1px solid rgba(211,139,113,0.16); border-radius: 12px; padding: 10px 12px; }
     .streak-top  { font-family: var(--font-ui); font-size: 11px; color: var(--coral); font-weight: 600; }
     .streak-days { font-family: var(--font-ui); font-size: 20px; font-weight: 700; color: var(--text); line-height: 1.2; }
     .streak-sub  { font-family: var(--font-ui); font-size: 10px; color: var(--text-muted); }
@@ -293,7 +293,7 @@
     .task-text.striked { text-decoration: line-through; color: var(--text-muted); }
     .task-tags  { display: flex; gap: 4px; }
     .tag { font-family: var(--font-ui); font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 40px; }
-    .tag.high { background: rgba(224,122,95,0.14); color: var(--coral); }
+    .tag.high { background: rgba(211,139,113,0.14); color: var(--coral); }
     .tag.med  { background: rgba(230,170,104,0.14); color: var(--gold); }
     .tag.time { background: rgba(86,204,242,0.10);  color: var(--blue); }
 
@@ -310,24 +310,25 @@
     .section-title .accent { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
     /* FEATURES */
-    .features-grid { display: grid; grid-template-columns: repeat(2,1fr); grid-template-rows: auto 1fr 1fr; gap: 18px; margin-top: 44px; }
+    .features-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; margin-top: 44px; }
     .feature-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+      background: var(--surface); border: 0.5px solid var(--border); border-radius: 20px;
       padding: 28px; display: flex; flex-direction: column;
       box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.04);
       transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
     }
-    .feature-card:hover { transform: translateY(-3px); border-color: rgba(224,122,95,0.28); box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(224,122,95,0.12); }
+    .feature-card:hover { transform: translateY(-3px); border-color: rgba(211,139,113,0.28); box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(211,139,113,0.12); }
     .feature-card.wide { grid-column: span 2; grid-row: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; flex-direction: unset; }
 
     .feature-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 19px; margin-bottom: 18px; flex-shrink: 0; }
-    .fi-coral  { background: rgba(224,122,95,0.12); }
+    .fi-coral  { background: rgba(211,139,113,0.12); }
     .fi-blue   { background: rgba(86,204,242,0.09); }
     .fi-violet { background: rgba(187,107,217,0.09); }
     .fi-green  { background: rgba(129,178,154,0.09); }
     .fi-gold   { background: rgba(230,170,104,0.09); }
 
-    .feature-title { font-family: var(--font-ui); font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: -0.3px; }
+    .feature-title { font-family: var(--font-ui); font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .pro-badge { font-size: 10px; font-weight: 700; color: var(--coral); background: rgba(211,139,113,0.1); border: 1px solid rgba(211,139,113,0.22); padding: 2px 8px; border-radius: 40px; letter-spacing: 0.3px; }
     .feature-text  { font-family: var(--font-ui); font-size: 14px; color: var(--text-secondary); line-height: 1.68; flex: 1; }
 
     .quick-input-demo { background: var(--bg); border-radius: 12px; padding: 18px; border: 1px solid var(--border-subtle); }
@@ -336,7 +337,7 @@
     .qd-line:last-child { border: none; padding-bottom: 0; }
     .qd-result { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
     .qd-tag { font-family: var(--font-ui); font-size: 10px; padding: 2px 7px; border-radius: 40px; font-weight: 600; }
-    .qd-tag.c { background: rgba(224,122,95,0.14); color: var(--coral); }
+    .qd-tag.c { background: rgba(211,139,113,0.14); color: var(--coral); }
     .qd-tag.t { background: rgba(86,204,242,0.10);  color: var(--blue); }
     .qd-tag.d { background: rgba(230,170,104,0.10); color: var(--gold); }
 
@@ -351,29 +352,29 @@
     .compare-table td.yes     { color: var(--green);  font-weight: 600; }
     .compare-table td.no      { color: var(--border); }
     .compare-table td.partial { color: var(--gold);   }
-    .compare-table .col-todone { background: rgba(224,122,95,0.035); }
+    .compare-table .col-todone { background: rgba(211,139,113,0.035); }
     .compare-table tbody tr:hover td { background: rgba(255,255,255,0.018); }
 
     /* PRICING */
     .pricing-section { background: var(--bg); }
-    .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 44px; align-items: stretch; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; margin-top: 44px; align-items: stretch; max-width: 720px; margin-left: auto; margin-right: auto; }
     .pricing-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+      background: var(--surface); border: 0.5px solid var(--border); border-radius: 20px;
       padding: 30px 26px; position: relative; overflow: hidden;
       display: flex; flex-direction: column;
       box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.04);
     }
     .pricing-card.featured {
-      border-color: rgba(224,122,95,0.4);
-      background: linear-gradient(160deg, rgba(224,122,95,0.065) 0%, var(--surface) 55%);
-      box-shadow: 0 0 0 1px rgba(224,122,95,0.2), 0 4px 32px rgba(0,0,0,0.3);
+      border-color: rgba(211,139,113,0.4);
+      background: linear-gradient(160deg, rgba(211,139,113,0.065) 0%, var(--surface) 55%);
+      box-shadow: 0 0 0 1px rgba(211,139,113,0.2), 0 4px 32px rgba(0,0,0,0.3);
     }
     .pricing-card.featured::before {
       content: 'Recomendado';
       position: absolute; top: 16px; right: 16px;
       font-family: var(--font-ui); font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
-      color: var(--coral); background: rgba(224,122,95,0.1);
-      border: 1px solid rgba(224,122,95,0.22); padding: 3px 10px; border-radius: 40px;
+      color: var(--coral); background: rgba(211,139,113,0.1);
+      border: 1px solid rgba(211,139,113,0.22); padding: 3px 10px; border-radius: 40px;
     }
     .plan-name   { font-family: var(--font-ui); font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
     .plan-price  { font-family: var(--font-ui); font-weight: 700; font-size: 52px; line-height: 1; color: var(--text); }
@@ -400,7 +401,7 @@
     .final-cta { background: var(--bg2); text-align: center; padding: 96px 24px; position: relative; overflow: hidden; }
     .final-cta::before {
       content: ''; position: absolute; width: 600px; height: 600px;
-      background: radial-gradient(ellipse, rgba(224,122,95,0.08) 0%, transparent 65%);
+      background: radial-gradient(ellipse, rgba(211,139,113,0.08) 0%, transparent 65%);
       top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none;
     }
     .final-cta-headline { font-family: var(--font-ui); font-weight: 700; font-size: clamp(30px,4.2vw,54px); line-height: 1.08; letter-spacing: -1.5px; color: var(--text); max-width: 520px; margin: 0 auto 14px; }
@@ -429,8 +430,8 @@
       html { scroll-behavior: auto; }
     }
 
-    @media (max-width: 860px) {
-      .pricing-grid { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
+    @media (max-width: 600px) {
+      .pricing-grid { grid-template-columns: 1fr; max-width: 440px; }
     }
     @media (max-width: 768px) {
       nav { padding: 0 16px; }
@@ -598,7 +599,7 @@
           </div>
           <div class="qd-line">
             <span>Entregar informe URGENTE hoy</span>
-            <div class="qd-result"><span class="qd-tag c" style="background:rgba(224,122,95,0.2)">Alta</span><span class="qd-tag d">Hoy</span></div>
+            <div class="qd-result"><span class="qd-tag c" style="background:rgba(211,139,113,0.2)">Alta</span><span class="qd-tag d">Hoy</span></div>
           </div>
           <div class="qd-line">
             <span>Revisar contratos cuando pueda</span>
@@ -618,20 +619,26 @@
 
       <div class="feature-card reveal">
         <div class="feature-icon fi-violet">&#128194;</div>
-        <h3 class="feature-title">Canvas visual lateral</h3>
-        <p class="feature-text">Espacio infinito de notas adhesivas para pensar y mapear ideas &mdash; al costado de tu lista, sin salir de la app.</p>
+        <h3 class="feature-title">Canvas visual lateral <span class="pro-badge">Pro</span></h3>
+        <p class="feature-text">Espacio infinito de notas adhesivas, checklists y links enriquecidos para pensar y mapear ideas &mdash; al costado de tu lista, sin salir de la app.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="feature-icon fi-blue">&#129302;</div>
+        <h3 class="feature-title">Coach IA personalizado <span class="pro-badge">Pro</span></h3>
+        <p class="feature-text">Un coach que analiza tus tareas, racha y carga del día para darte tips personalizados. Chateá con él para reorganizar prioridades o pedir ayuda.</p>
       </div>
 
       <div class="feature-card reveal">
         <div class="feature-icon fi-gold">&#128293;</div>
         <h3 class="feature-title">Racha y gamificación</h3>
-        <p class="feature-text">Hay días que cerrás la laptop sintiendo que hiciste todo. to done te ayuda a tener más de esos días &mdash; y a no olvidar la racha cuando más lo necesitás.</p>
+        <p class="feature-text">Hay días que cerrás la laptop sintiendo que hiciste todo. to done te ayuda a tener más de esos días &mdash; con racha, confetti y celebración al completar.</p>
       </div>
 
       <div class="feature-card reveal">
         <div class="feature-icon fi-green">&#129309;</div>
-        <h3 class="feature-title">Compartí, delegá y hacé seguimiento</h3>
-        <p class="feature-text">Asigná tareas a tu equipo, delegá con un toque y seguí el avance sin reuniones de status. Todo dentro de to done.</p>
+        <h3 class="feature-title">Delegá tareas por email <span class="pro-badge">Pro</span></h3>
+        <p class="feature-text">Asigná tareas a cualquier persona por email. Reciben notificación y la tarea aparece en su lista. Seguí el avance sin reuniones de status.</p>
       </div>
 
     </div>
@@ -652,13 +659,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td class="feature-name">IA que interpreta lenguaje natural</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">Tenés que escribirlo perfectamente</td></tr>
+        <tr><td class="feature-name">IA que interpreta lenguaje natural</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">Completás campos uno por uno</td></tr>
         <tr><td class="feature-name">Estimación de carga del día</td><td class="col-todone yes">&#10003; Sí</td><td class="no">Lo calculás vos en tu cabeza</td></tr>
         <tr><td class="feature-name">Alerta de sobrecarga</td><td class="col-todone yes">&#10003; Sí</td><td class="no">Te das cuenta cuando ya es tarde</td></tr>
-        <tr><td class="feature-name">Volcado rápido con IA</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">Completás campos uno por uno</td></tr>
-        <tr><td class="feature-name">Canvas para desarrollo personal</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">Abrís otra app, perdés el foco</td></tr>
-        <tr><td class="feature-name">Canvas visual integrado</td><td class="col-todone yes">&#10003; Sí</td><td class="no">Salís de la app para pensar</td></tr>
-        <tr><td class="feature-name">Compartir y delegar tareas</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">Reuniones de seguimiento de igual</td></tr>
+        <tr><td class="feature-name">Coach IA con chat personalizado</td><td class="col-todone yes">&#10003; Sí</td><td class="no">No existe</td></tr>
+        <tr><td class="feature-name">Volcado rápido con IA</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">Tenés que escribirlo perfectamente</td></tr>
+        <tr><td class="feature-name">Canvas visual integrado</td><td class="col-todone yes">&#10003; Sí</td><td class="no">Abrís otra app, perdés el foco</td></tr>
+        <tr><td class="feature-name">Delegar tareas por email</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">Reuniones de seguimiento igual</td></tr>
+        <tr><td class="feature-name">Modo claro y oscuro</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">A veces</td></tr>
       </tbody>
     </table>
   </div>
@@ -677,13 +685,15 @@
         <p class="plan-period">USD &middot; para siempre</p>
         <p class="plan-desc">Para empezar a organizarte sin comprometer nada.</p>
         <ul class="plan-features">
-          <li><span class="check">&#10003;</span> Tareas y subtareas</li>
+          <li><span class="check">&#10003;</span> Hasta 25 tareas pendientes</li>
+          <li><span class="check">&#10003;</span> 2 listas y 2 subtareas por tarea</li>
           <li><span class="check">&#10003;</span> Vista de hoy y esta semana</li>
-          <li><span class="check">&#10003;</span> IA básica para interpretar tareas</li>
+          <li><span class="check">&#10003;</span> Sugerencias básicas de IA</li>
           <li><span class="check">&#10003;</span> Racha y gamificación</li>
+          <li><span class="check">&#10003;</span> Modo claro y oscuro</li>
           <li><span class="x">&mdash;</span> Canvas visual</li>
-          <li><span class="x">&mdash;</span> Volcado rápido con IA</li>
-          <li><span class="x">&mdash;</span> Alertas de sobrecarga</li>
+          <li><span class="x">&mdash;</span> Coach IA con chat</li>
+          <li><span class="x">&mdash;</span> Delegación de tareas</li>
         </ul>
         <div class="plan-cta-wrap">
           <a href="https://app.todone.com.ar?signup=1" class="plan-cta-outline">Empezar gratis</a>
@@ -692,38 +702,22 @@
 
       <div class="pricing-card featured reveal">
         <p class="plan-name">Pro</p>
-        <div class="plan-price grad">$9.99</div>
-        <p class="plan-period">USD &middot; por mes &middot; facturación anual</p>
-        <p class="plan-desc">El sistema completo para individuos que trabajan en serio.</p>
+        <div class="plan-price grad">$2.99</div>
+        <p class="plan-period">USD &middot; por mes</p>
+        <p class="plan-desc">El sistema completo para quienes trabajan en serio.</p>
         <ul class="plan-features">
           <li><span class="check">&#10003;</span> Todo lo del plan Free</li>
-          <li><span class="check">&#10003;</span> Canvas visual ilimitado</li>
+          <li><span class="check">&#10003;</span> Tareas, listas y subtareas ilimitadas</li>
+          <li><span class="check">&#10003;</span> Canvas visual infinito</li>
+          <li><span class="check">&#10003;</span> Coach IA personalizado con chat</li>
           <li><span class="check">&#10003;</span> Volcado rápido con IA</li>
           <li><span class="check">&#10003;</span> Alertas de sobrecarga diaria</li>
-          <li><span class="check">&#10003;</span> Listas ilimitadas</li>
+          <li><span class="check">&#10003;</span> Delegá tareas por email</li>
           <li><span class="check">&#10003;</span> Soporte prioritario</li>
         </ul>
         <div class="plan-cta-wrap">
           <a href="https://app.todone.com.ar?signup=1" class="btn-primary plan-cta">Empezar con Pro &rarr;</a>
           <p class="plan-note">Sin permanencia. Cancelás cuando querés.</p>
-        </div>
-      </div>
-
-      <div class="pricing-card reveal">
-        <p class="plan-name">Equipos</p>
-        <div class="plan-price custom">Custom</div>
-        <p class="plan-period">USD &middot; hablamos según tu equipo</p>
-        <p class="plan-desc">Gestión centralizada, reportes y soporte dedicado para tu equipo.</p>
-        <ul class="plan-features">
-          <li><span class="check">&#10003;</span> Todo lo del plan Pro</li>
-          <li><span class="check">&#10003;</span> Gestión de usuarios y roles</li>
-          <li><span class="check">&#10003;</span> Reportes del equipo</li>
-          <li><span class="check">&#10003;</span> Onboarding personalizado</li>
-          <li><span class="check">&#10003;</span> SLA y soporte dedicado</li>
-        </ul>
-        <div class="plan-cta-wrap">
-          <a href="mailto:hola@todone.com.ar" class="plan-cta-outline">Hablar con ventas &rarr;</a>
-          <p class="plan-note">Desde 5 personas.</p>
         </div>
       </div>
 
