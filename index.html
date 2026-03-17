@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="to done — Gestioná tareas con IA. Priorizá automáticamente, sabé cuánto tiempo tenés hoy y terminá el día habiendo hecho lo que importa." />
-  <title>to done ✦ — Organizate sin pensar en organizarte</title>
+  <meta name="description" content="to done — Gestioná tareas con IA. Priorizá automáticamente, sabé cuánto tiempo tenés hoy y terminá el día habiendo hecho lo que importa." data-i18n-attr="content:meta_desc" />
+  <title data-i18n="page_title">to done ✦ — Organizate sin pensar en organizarte</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
@@ -368,14 +368,14 @@
 <nav>
   <div class="nav-left">
     <a href="/" class="nav-logo">
-      <span class="nav-logo-to">to </span><span class="nav-logo-done">done</span><span class="nav-logo-star">✦</span>
+      <span class="nav-logo-to">to </span><span class="nav-logo-done">done</span><span class="nav-logo-star">&#10022;</span>
     </a>
-    <a href="#features" class="nav-link" onclick="smoothTo(event,'features')">Producto</a>
-    <a href="#precios" class="nav-link" onclick="smoothTo(event,'precios')">Planes</a>
+    <a href="#features" class="nav-link" onclick="smoothTo(event,'features')" data-i18n="nav_product">Producto</a>
+    <a href="#precios" class="nav-link" onclick="smoothTo(event,'precios')" data-i18n="nav_plans">Planes</a>
   </div>
   <div class="nav-right">
-    <a href="https://app.todone.com.ar" class="btn-ghost">Ingresar</a>
-    <a href="https://app.todone.com.ar?signup=1" class="btn-primary">Empezar gratis <span>&rarr;</span></a>
+    <a href="https://app.todone.com.ar" class="btn-ghost" data-i18n="nav_login">Ingresar</a>
+    <a href="https://app.todone.com.ar?signup=1" class="btn-primary" data-i18n-html="nav_cta">Empezar gratis &rarr;</a>
   </div>
 </nav>
 
@@ -383,22 +383,22 @@
 <section class="hero" id="registro">
   <div class="hero-content">
     <div class="hero-badges">
-      <span class="hero-badge accent-badge"><span class="badge-icon">&#9889;</span> IA integrada</span>
-      <span class="hero-badge"><span class="badge-icon">&#127912;</span> Gratis para empezar</span>
+      <span class="hero-badge accent-badge"><span class="badge-icon">&#9889;</span> <span data-i18n="badge_ai">IA integrada</span></span>
+      <span class="hero-badge"><span class="badge-icon">&#127912;</span> <span data-i18n="badge_free">Gratis para empezar</span></span>
     </div>
 
-    <h1 class="hero-headline">
-      Tenés 40 tareas.<br/>
-      <span class="accent">¿Por dónde empezás?</span>
+    <h1 class="hero-headline" data-i18n-html="hero_headline">
+      Ten&eacute;s 40 tareas.<br/>
+      <span class="accent">&iquest;Por d&oacute;nde empez&aacute;s?</span>
     </h1>
 
-    <p class="hero-sub">
-      La IA prioriza, avisa cuando el día se llena y te dice qué hacer primero. Vos solo hacés.
+    <p class="hero-sub" data-i18n="hero_sub">
+      Un sistema de productividad con IA que te ayuda a priorizar, organizar tu agenda y delegar o compartir tareas.
     </p>
 
     <div class="hero-ctas">
-      <a href="https://app.todone.com.ar?signup=1" class="btn-primary">Empezar gratis <span>&rarr;</span></a>
-      <a href="#features" class="btn-ghost" onclick="smoothTo(event,'features')">Ver funcionalidades</a>
+      <a href="https://app.todone.com.ar?signup=1" class="btn-primary" data-i18n-html="hero_cta">Empezar gratis &rarr;</a>
+      <a href="#features" class="btn-ghost" onclick="smoothTo(event,'features')" data-i18n="hero_cta2">Ver funcionalidades</a>
     </div>
   </div>
 
@@ -408,46 +408,46 @@
         <div class="mockup-dot r"></div>
         <div class="mockup-dot y"></div>
         <div class="mockup-dot g"></div>
-        <span class="mockup-title">to done &mdash; Hoy</span>
+        <span class="mockup-title" data-i18n-html="mockup_title">to done &mdash; Hoy</span>
       </div>
       <div class="mockup-body">
         <div class="day-progress">
-          <span class="day-label">Hoy &middot; 5h 30min</span>
+          <span class="day-label" data-i18n-html="day_label">Hoy &middot; 5h 30min</span>
           <div class="progress-bar"><div class="progress-fill"></div></div>
           <span class="progress-pct">62%</span>
         </div>
         <div class="tasks-header">
-          <span class="tasks-title">Pendiente</span>
-          <span class="tasks-count">5 tareas</span>
+          <span class="tasks-title" data-i18n="tasks_title">Pendiente</span>
+          <span class="tasks-count" data-i18n="tasks_count">5 tareas</span>
         </div>
         <div class="task-item done">
           <div class="task-check checked">&#10003;</div>
-          <span class="task-text striked">Revisar propuesta con el equipo</span>
+          <span class="task-text striked" data-i18n="task1">Revisar propuesta con el equipo</span>
           <div class="task-tags"><span class="tag time">45 min</span></div>
         </div>
         <div class="task-item done">
           <div class="task-check checked">&#10003;</div>
-          <span class="task-text striked">Responder emails urgentes</span>
+          <span class="task-text striked" data-i18n="task2">Responder emails urgentes</span>
           <div class="task-tags"><span class="tag time">30 min</span></div>
         </div>
         <div class="task-item">
           <div class="task-check"></div>
-          <span class="task-text">Llamar a proveedor antes de las 18h</span>
-          <div class="task-tags"><span class="tag high">Alta</span><span class="tag time">15 min</span></div>
+          <span class="task-text" data-i18n="task3">Llamar a proveedor antes de las 18h</span>
+          <div class="task-tags"><span class="tag high" data-i18n="pill_high">Alta</span><span class="tag time">15 min</span></div>
         </div>
         <div class="task-item">
           <div class="task-check"></div>
-          <span class="task-text">Terminar deck para inversores</span>
-          <div class="task-tags"><span class="tag high">Alta</span><span class="tag time">2h</span></div>
+          <span class="task-text" data-i18n="task4">Terminar deck para inversores</span>
+          <div class="task-tags"><span class="tag high" data-i18n="pill_high">Alta</span><span class="tag time">2h</span></div>
         </div>
         <div class="task-item">
           <div class="task-check"></div>
-          <span class="task-text">Actualizar roadmap del producto</span>
-          <div class="task-tags"><span class="tag med">Media</span><span class="tag time">1h</span></div>
+          <span class="task-text" data-i18n="task5">Actualizar roadmap del producto</span>
+          <div class="task-tags"><span class="tag med" data-i18n="pill_med">Media</span><span class="tag time">1h</span></div>
         </div>
         <div class="ai-suggestion">
           <span class="ai-icon">&#9889;</span>
-          <span class="ai-text"><strong>IA:</strong> Tenés 8h 20min programadas para hoy. ¿Movemos "Actualizar roadmap" para mañana?</span>
+          <span class="ai-text" data-i18n-html="ai_suggestion"><strong>IA:</strong> Ten&eacute;s 8h 20min programadas para hoy. &iquest;Movemos &ldquo;Actualizar roadmap&rdquo; para ma&ntilde;ana?</span>
         </div>
       </div>
     </div>
@@ -457,33 +457,33 @@
 <!-- FEATURES -->
 <section id="features" style="background: var(--surface-alt);">
   <div class="section-inner">
-    <p class="section-label reveal">Funcionalidades</p>
-    <h2 class="section-title reveal">Pensado para quien<br/><span class="accent">trabaja a mil.</span></h2>
-    <p class="section-desc reveal">Todo lo que necesitás para dejar de pensar en cómo organizarte y empezar a hacer.</p>
+    <p class="section-label reveal" data-i18n="feat_label">Funcionalidades</p>
+    <h2 class="section-title reveal" data-i18n-html="feat_title">Pensado para quien<br/><span class="accent">trabaja a mil.</span></h2>
+    <p class="section-desc reveal" data-i18n="feat_desc">Todo lo que necesit&aacute;s para dejar de pensar en c&oacute;mo organizarte y empezar a hacer.</p>
     <div class="features-grid">
 
       <div class="feature-card span-2 reveal">
         <div class="feature-inner">
           <div>
             <div class="feature-icon fi-coral">&#9889;</div>
-            <h3 class="feature-title">Volcado rápido con IA</h3>
-            <p class="feature-text">Escribís todo lo que tenés en la cabeza de un golpe. La IA detecta prioridad, tiempo y fecha sola &mdash; sin completar ningún campo.</p>
+            <h3 class="feature-title" data-i18n="f1_title">Volcado r&aacute;pido con IA</h3>
+            <p class="feature-text" data-i18n-html="f1_text">Escrib&iacute;s todo lo que ten&eacute;s en la cabeza de un golpe. La IA detecta prioridad, tiempo y fecha sola &mdash; sin completar ning&uacute;n campo.</p>
           </div>
           <div class="quick-input-demo">
-            <div class="qd-label">Escribís &rarr; la IA organiza</div>
+            <div class="qd-label" data-i18n-html="qd_label">Escrib&iacute;s &rarr; la IA organiza</div>
             <div class="qd-line">
-              <span>Llamar a Juan mañana 30min</span>
-              <div class="qd-result"><span class="qd-tag c">Media</span><span class="qd-tag t">30 min</span><span class="qd-tag d">Mañana</span></div>
+              <span data-i18n="qd1">Llamar a Juan ma&ntilde;ana 30min</span>
+              <div class="qd-result"><span class="qd-tag c" data-i18n="pill_med">Media</span><span class="qd-tag t">30 min</span><span class="qd-tag d" data-i18n="qd_tomorrow">Ma&ntilde;ana</span></div>
             </div>
             <div class="qd-line">
-              <span>Entregar informe URGENTE hoy</span>
-              <div class="qd-result"><span class="qd-tag c" style="background:rgba(211,139,113,0.2)">Alta</span><span class="qd-tag d">Hoy</span></div>
+              <span data-i18n="qd2">Entregar informe URGENTE hoy</span>
+              <div class="qd-result"><span class="qd-tag c" style="background:rgba(211,139,113,0.2)" data-i18n="pill_high">Alta</span><span class="qd-tag d" data-i18n="qd_today">Hoy</span></div>
             </div>
             <div class="qd-line">
-              <span>Revisar contratos cuando pueda</span>
+              <span data-i18n="qd3">Revisar contratos cuando pueda</span>
               <div class="qd-result">
-                <span class="qd-tag" style="background:rgba(90,158,124,0.12);color:var(--green)">Baja</span>
-                <span class="qd-tag d" style="color:var(--text-muted)">Sin fecha</span>
+                <span class="qd-tag" style="background:rgba(90,158,124,0.12);color:var(--green)" data-i18n="pill_low">Baja</span>
+                <span class="qd-tag d" style="color:var(--text-muted)" data-i18n="qd_nodate">Sin fecha</span>
               </div>
             </div>
           </div>
@@ -492,32 +492,32 @@
 
       <div class="feature-card reveal">
         <div class="feature-icon fi-blue">&#128202;</div>
-        <h3 class="feature-title">Carga del día en tiempo real</h3>
-        <p class="feature-text">Te dice cuánto tiempo programaste hoy. Si te pasás, te avisa y sugiere qué mover &mdash; sin que vos tengas que calcularlo.</p>
+        <h3 class="feature-title" data-i18n="f2_title">Carga del d&iacute;a en tiempo real</h3>
+        <p class="feature-text" data-i18n-html="f2_text">Te dice cu&aacute;nto tiempo programaste hoy. Si te pas&aacute;s, te avisa y sugiere qu&eacute; mover &mdash; sin que vos tengas que calcularlo.</p>
       </div>
 
       <div class="feature-card reveal">
         <div class="feature-icon fi-violet">&#128194;</div>
-        <h3 class="feature-title">Canvas visual lateral <span class="pro-badge">Pro</span></h3>
-        <p class="feature-text">Espacio infinito de notas adhesivas, checklists y links enriquecidos para pensar y mapear ideas &mdash; al costado de tu lista.</p>
+        <h3 class="feature-title" data-i18n-html="f3_title">Canvas visual lateral <span class="pro-badge">Pro</span></h3>
+        <p class="feature-text" data-i18n-html="f3_text">Espacio infinito de notas adhesivas, checklists y links enriquecidos para pensar y mapear ideas &mdash; al costado de tu lista.</p>
       </div>
 
       <div class="feature-card reveal">
         <div class="feature-icon fi-blue">&#129302;</div>
-        <h3 class="feature-title">Coach IA personalizado <span class="pro-badge">Pro</span></h3>
-        <p class="feature-text">Un coach que analiza tus tareas, racha y carga del día para darte tips personalizados. Chateá con él para reorganizar prioridades.</p>
+        <h3 class="feature-title" data-i18n-html="f4_title">Coach IA personalizado <span class="pro-badge">Pro</span></h3>
+        <p class="feature-text" data-i18n-html="f4_text">Un coach que analiza tus tareas, racha y carga del d&iacute;a para darte tips personalizados. Chate&aacute; con &eacute;l para reorganizar prioridades.</p>
       </div>
 
       <div class="feature-card reveal">
         <div class="feature-icon fi-gold">&#128293;</div>
-        <h3 class="feature-title">Racha y gamificación</h3>
-        <p class="feature-text">Racha diaria, confetti al completar y celebración al cerrar el día. Más de esos días donde sentís que hiciste todo.</p>
+        <h3 class="feature-title" data-i18n="f5_title">Racha y gamificaci&oacute;n</h3>
+        <p class="feature-text" data-i18n-html="f5_text">Racha diaria, confetti al completar y celebraci&oacute;n al cerrar el d&iacute;a. M&aacute;s de esos d&iacute;as donde sent&iacute;s que hiciste todo.</p>
       </div>
 
       <div class="feature-card reveal">
         <div class="feature-icon fi-green">&#129309;</div>
-        <h3 class="feature-title">Delegá tareas por email <span class="pro-badge">Pro</span></h3>
-        <p class="feature-text">Asigná tareas a cualquier persona por email. Reciben notificación y seguís el avance sin reuniones de status.</p>
+        <h3 class="feature-title" data-i18n-html="f6_title">Delegar y compartir tareas <span class="pro-badge">Pro</span></h3>
+        <p class="feature-text" data-i18n-html="f6_text">Asign&aacute; tareas a cualquier persona por email. Reciben notificaci&oacute;n y segu&iacute;s el avance sin reuniones de status.</p>
       </div>
 
     </div>
@@ -527,25 +527,24 @@
 <!-- COMPARISON -->
 <section class="comparison-section">
   <div class="section-inner">
-    <p class="section-label reveal">Por qué to done</p>
-    <h2 class="section-title reveal">Hace lo que<br/><span class="accent">el resto no hace.</span></h2>
+    <p class="section-label reveal" data-i18n="cmp_label">Por qu&eacute; to done</p>
+    <h2 class="section-title reveal" data-i18n-html="cmp_title">Hace lo que<br/><span class="accent">el resto no hace.</span></h2>
     <table class="compare-table reveal">
       <thead>
         <tr>
-          <th scope="col">Funcionalidad</th>
-          <th scope="col" class="highlight">to done ✦</th>
-          <th scope="col">Otras apps</th>
+          <th scope="col" data-i18n="cmp_feature">Funcionalidad</th>
+          <th scope="col" class="highlight">to done &#10022;</th>
+          <th scope="col" data-i18n="cmp_others">Otras apps</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td class="feature-name">IA que interpreta lenguaje natural</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">Completás campos uno por uno</td></tr>
-        <tr><td class="feature-name">Estimación de carga del día</td><td class="col-todone yes">&#10003; Sí</td><td class="no">Lo calculás vos en tu cabeza</td></tr>
-        <tr><td class="feature-name">Alerta de sobrecarga</td><td class="col-todone yes">&#10003; Sí</td><td class="no">Te das cuenta cuando ya es tarde</td></tr>
-        <tr><td class="feature-name">Coach IA con chat personalizado</td><td class="col-todone yes">&#10003; Sí</td><td class="no">No existe</td></tr>
-        <tr><td class="feature-name">Volcado rápido con IA</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">Tenés que escribirlo perfectamente</td></tr>
-        <tr><td class="feature-name">Canvas visual integrado</td><td class="col-todone yes">&#10003; Sí</td><td class="no">Abrís otra app, perdés el foco</td></tr>
-        <tr><td class="feature-name">Delegar tareas por email</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">Reuniones de seguimiento igual</td></tr>
-        <tr><td class="feature-name">Modo claro y oscuro</td><td class="col-todone yes">&#10003; Sí</td><td class="partial">A veces</td></tr>
+        <tr><td class="feature-name" data-i18n="c1_name">IA que interpreta lenguaje natural</td><td class="col-todone yes" data-i18n-html="cmp_yes">&#10003; S&iacute;</td><td class="partial" data-i18n="c1_other">Complet&aacute;s campos uno por uno</td></tr>
+        <tr><td class="feature-name" data-i18n="c2_name">Estimaci&oacute;n de carga del d&iacute;a</td><td class="col-todone yes" data-i18n-html="cmp_yes">&#10003; S&iacute;</td><td class="no" data-i18n="c2_other">Lo calcul&aacute;s vos en tu cabeza</td></tr>
+        <tr><td class="feature-name" data-i18n="c3_name">Alerta de sobrecarga</td><td class="col-todone yes" data-i18n-html="cmp_yes">&#10003; S&iacute;</td><td class="no" data-i18n="c3_other">Te das cuenta cuando ya es tarde</td></tr>
+        <tr><td class="feature-name" data-i18n="c4_name">Coach IA con chat personalizado</td><td class="col-todone yes" data-i18n-html="cmp_yes">&#10003; S&iacute;</td><td class="no" data-i18n="c4_other">No existe</td></tr>
+        <tr><td class="feature-name" data-i18n="c5_name">Volcado r&aacute;pido con IA</td><td class="col-todone yes" data-i18n-html="cmp_yes">&#10003; S&iacute;</td><td class="partial" data-i18n="c5_other">Ten&eacute;s que escribirlo perfectamente</td></tr>
+        <tr><td class="feature-name" data-i18n="c6_name">Canvas visual integrado</td><td class="col-todone yes" data-i18n-html="cmp_yes">&#10003; S&iacute;</td><td class="no" data-i18n="c6_other">Abr&iacute;s otra app, perd&eacute;s el foco</td></tr>
+        <tr><td class="feature-name" data-i18n="c7_name">Delegar y compartir tareas</td><td class="col-todone yes" data-i18n-html="cmp_yes">&#10003; S&iacute;</td><td class="partial" data-i18n="c7_other">Reuniones de seguimiento igual</td></tr>
       </tbody>
     </table>
   </div>
@@ -554,49 +553,48 @@
 <!-- PRICING -->
 <section id="precios" class="pricing-section">
   <div class="section-inner">
-    <p class="section-label reveal" style="text-align:center;">Planes</p>
-    <h2 class="section-title reveal" style="margin:0 auto;text-align:center;">Empezá gratis.<br/><span class="accent">Crecé cuando quieras.</span></h2>
+    <p class="section-label reveal" style="text-align:center;" data-i18n="price_label">Planes</p>
+    <h2 class="section-title reveal" style="margin:0 auto;text-align:center;" data-i18n-html="price_title">Empez&aacute; gratis.<br/><span class="accent">Crec&eacute; cuando quieras.</span></h2>
     <div class="pricing-grid">
 
       <div class="pricing-card reveal">
         <p class="plan-name">Free</p>
         <div class="plan-price">$0</div>
-        <p class="plan-period">USD &middot; para siempre</p>
-        <p class="plan-desc">Para empezar a organizarte sin comprometer nada.</p>
-        <ul class="plan-features">
+        <p class="plan-period" data-i18n-html="free_period">USD &middot; para siempre</p>
+        <p class="plan-desc" data-i18n="free_desc">Para empezar a organizarte sin comprometer nada.</p>
+        <ul class="plan-features" data-i18n-html="free_features">
           <li><span class="check">&#10003;</span> Hasta 25 tareas pendientes</li>
           <li><span class="check">&#10003;</span> 2 listas y 2 subtareas por tarea</li>
           <li><span class="check">&#10003;</span> Vista de hoy y esta semana</li>
-          <li><span class="check">&#10003;</span> Sugerencias básicas de IA</li>
-          <li><span class="check">&#10003;</span> Racha y gamificación</li>
-          <li><span class="check">&#10003;</span> Modo claro y oscuro</li>
+          <li><span class="check">&#10003;</span> Sugerencias b&aacute;sicas de IA</li>
+          <li><span class="check">&#10003;</span> Racha y gamificaci&oacute;n</li>
           <li><span class="x">&mdash;</span> Canvas visual</li>
           <li><span class="x">&mdash;</span> Coach IA con chat</li>
-          <li><span class="x">&mdash;</span> Delegación de tareas</li>
+          <li><span class="x">&mdash;</span> Delegaci&oacute;n de tareas</li>
         </ul>
         <div class="plan-cta-wrap">
-          <a href="https://app.todone.com.ar?signup=1" class="plan-cta-outline">Empezar gratis</a>
+          <a href="https://app.todone.com.ar?signup=1" class="plan-cta-outline" data-i18n="free_cta">Empezar gratis</a>
         </div>
       </div>
 
       <div class="pricing-card featured reveal">
         <p class="plan-name">Pro</p>
         <div class="plan-price grad">$2.99</div>
-        <p class="plan-period">USD &middot; por mes</p>
-        <p class="plan-desc">El sistema completo para quienes trabajan en serio.</p>
-        <ul class="plan-features">
+        <p class="plan-period" data-i18n-html="pro_period">USD &middot; por mes</p>
+        <p class="plan-desc" data-i18n="pro_desc">El sistema completo para quienes trabajan en serio.</p>
+        <ul class="plan-features" data-i18n-html="pro_features">
           <li><span class="check">&#10003;</span> Todo lo del plan Free</li>
           <li><span class="check">&#10003;</span> Tareas, listas y subtareas ilimitadas</li>
           <li><span class="check">&#10003;</span> Canvas visual infinito</li>
           <li><span class="check">&#10003;</span> Coach IA personalizado con chat</li>
-          <li><span class="check">&#10003;</span> Volcado rápido con IA</li>
+          <li><span class="check">&#10003;</span> Volcado r&aacute;pido con IA</li>
           <li><span class="check">&#10003;</span> Alertas de sobrecarga diaria</li>
-          <li><span class="check">&#10003;</span> Delegá tareas por email</li>
+          <li><span class="check">&#10003;</span> Delegar y compartir tareas</li>
           <li><span class="check">&#10003;</span> Soporte prioritario</li>
         </ul>
         <div class="plan-cta-wrap">
-          <a href="https://app.todone.com.ar?signup=1" class="btn-primary plan-cta">Empezar con Pro &rarr;</a>
-          <p class="plan-note">Sin permanencia. Cancelás cuando querés.</p>
+          <a href="https://app.todone.com.ar?signup=1" class="btn-primary plan-cta" data-i18n-html="pro_cta">Empezar con Pro &rarr;</a>
+          <p class="plan-note" data-i18n="pro_note">Sin permanencia. Cancel&aacute;s cuando quer&eacute;s.</p>
         </div>
       </div>
 
@@ -606,22 +604,22 @@
 
 <!-- FINAL CTA -->
 <section class="final-cta">
-  <h2 class="final-cta-headline reveal">Empezá hoy,<br/><span class="accent">es gratis.</span></h2>
-  <p class="final-cta-sub reveal">Sin instalación. Sin tarjeta. Abrís y empezás.</p>
-  <a href="https://app.todone.com.ar?signup=1" class="btn-primary final-cta-btn reveal">Empezar gratis &rarr;</a>
+  <h2 class="final-cta-headline reveal" data-i18n-html="final_headline">Empez&aacute; hoy,<br/><span class="accent">es gratis.</span></h2>
+  <p class="final-cta-sub reveal" data-i18n="final_sub">Sin instalaci&oacute;n. Sin tarjeta. Abr&iacute;s y empez&aacute;s.</p>
+  <a href="https://app.todone.com.ar?signup=1" class="btn-primary final-cta-btn reveal" data-i18n-html="final_cta">Empezar gratis &rarr;</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <span class="footer-logo">
-    <span class="footer-logo-to">to </span><span class="footer-logo-done">done</span><span class="footer-logo-star">✦</span>
+    <span class="footer-logo-to">to </span><span class="footer-logo-done">done</span><span class="footer-logo-star">&#10022;</span>
   </span>
   <div class="footer-links">
-    <a href="/privacy">Privacidad</a>
-    <a href="/terms">Términos</a>
-    <a href="mailto:hola@todone.com.ar">Contacto</a>
+    <a href="/privacy" data-i18n="footer_privacy">Privacidad</a>
+    <a href="/terms" data-i18n="footer_terms">T&eacute;rminos</a>
+    <a href="mailto:hola@todone.com.ar" data-i18n="footer_contact">Contacto</a>
   </div>
-  <span class="footer-copy">Hecho con &#9829; en Latam</span>
+  <span class="footer-copy" data-i18n-html="footer_copy">Hecho con &#9829; en Latam</span>
 </footer>
 
 <script>
@@ -645,6 +643,178 @@
     });
   }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
   document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+  // ── i18n ──
+  var i18n = {
+    es: {
+      page_title: 'to done \u2726 \u2014 Organiza tu d\u00eda sin pensar en organizarte',
+      meta_desc: 'to done \u2014 Gestiona tareas con IA. Prioriza autom\u00e1ticamente, sabe cu\u00e1nto tiempo tienes hoy y termina el d\u00eda habiendo hecho lo que importa.',
+      nav_product: 'Producto', nav_plans: 'Planes', nav_login: 'Ingresar',
+      nav_cta: 'Empezar gratis &rarr;',
+      badge_ai: 'IA integrada', badge_free: 'Gratis para empezar',
+      hero_headline: 'Tienes 40 tareas.<br/><span class="accent">\u00bfPor d\u00f3nde empiezas?</span>',
+      hero_sub: 'Un sistema de productividad con IA que te ayuda a priorizar, organizar tu agenda y delegar o compartir tareas.',
+      hero_cta: 'Empezar gratis &rarr;', hero_cta2: 'Ver funcionalidades',
+      mockup_title: 'to done &mdash; Hoy',
+      day_label: 'Hoy &middot; 5h 30min', tasks_title: 'Pendiente', tasks_count: '5 tareas',
+      task1: 'Revisar propuesta con el equipo', task2: 'Responder emails urgentes',
+      task3: 'Llamar a proveedor antes de las 18h', task4: 'Terminar deck para inversores', task5: 'Actualizar roadmap del producto',
+      pill_high: 'Alta', pill_med: 'Media', pill_low: 'Baja',
+      ai_suggestion: '<strong>IA:</strong> Tienes 8h 20min programadas para hoy. \u00bfMovemos "Actualizar roadmap" para ma\u00f1ana?',
+      feat_label: 'Funcionalidades',
+      feat_title: 'Pensado para quien<br/><span class="accent">trabaja a mil.</span>',
+      feat_desc: 'Todo lo que necesitas para dejar de pensar en c\u00f3mo organizarte y empezar a hacer.',
+      f1_title: 'Volcado r\u00e1pido con IA',
+      f1_text: 'Escribes todo lo que tienes en la cabeza de un golpe. La IA detecta prioridad, tiempo y fecha sola &mdash; sin completar ning\u00fan campo.',
+      qd_label: 'Escribes &rarr; la IA organiza',
+      qd1: 'Llamar a Juan ma\u00f1ana 30min', qd2: 'Entregar informe URGENTE hoy', qd3: 'Revisar contratos cuando pueda',
+      qd_tomorrow: 'Ma\u00f1ana', qd_today: 'Hoy', qd_nodate: 'Sin fecha',
+      f2_title: 'Carga del d\u00eda en tiempo real',
+      f2_text: 'Te dice cu\u00e1nto tiempo programaste hoy. Si te pasas, te avisa y sugiere qu\u00e9 mover &mdash; sin que t\u00fa tengas que calcularlo.',
+      f3_title: 'Canvas visual lateral <span class="pro-badge">Pro</span>',
+      f3_text: 'Espacio infinito de notas adhesivas, checklists y links enriquecidos para pensar y mapear ideas &mdash; al costado de tu lista.',
+      f4_title: 'Coach IA personalizado <span class="pro-badge">Pro</span>',
+      f4_text: 'Un coach que analiza tus tareas, racha y carga del d\u00eda para darte tips personalizados. Chatea con \u00e9l para reorganizar prioridades.',
+      f5_title: 'Racha y gamificaci\u00f3n',
+      f5_text: 'Racha diaria, confetti al completar y celebraci\u00f3n al cerrar el d\u00eda. M\u00e1s de esos d\u00edas donde sientes que hiciste todo.',
+      f6_title: 'Delegar y compartir tareas <span class="pro-badge">Pro</span>',
+      f6_text: 'Asigna tareas a cualquier persona por email. Reciben notificaci\u00f3n y sigues el avance sin reuniones de status.',
+      cmp_label: 'Por qu\u00e9 to done',
+      cmp_title: 'Hace lo que<br/><span class="accent">el resto no hace.</span>',
+      cmp_feature: 'Funcionalidad', cmp_others: 'Otras apps', cmp_yes: '&#10003; S\u00ed',
+      c1_name: 'IA que interpreta lenguaje natural', c1_other: 'Completas campos uno por uno',
+      c2_name: 'Estimaci\u00f3n de carga del d\u00eda', c2_other: 'Lo calculas t\u00fa en tu cabeza',
+      c3_name: 'Alerta de sobrecarga', c3_other: 'Te das cuenta cuando ya es tarde',
+      c4_name: 'Coach IA con chat personalizado', c4_other: 'No existe',
+      c5_name: 'Volcado r\u00e1pido con IA', c5_other: 'Tienes que escribirlo perfectamente',
+      c6_name: 'Canvas visual integrado', c6_other: 'Abres otra app, pierdes el foco',
+      c7_name: 'Delegar y compartir tareas', c7_other: 'Reuniones de seguimiento igual',
+      price_label: 'Planes',
+      price_title: 'Empieza gratis.<br/><span class="accent">Crece cuando quieras.</span>',
+      free_period: 'USD &middot; para siempre',
+      free_desc: 'Para empezar a organizarte sin comprometer nada.',
+      free_features: '<li><span class="check">&#10003;</span> Hasta 25 tareas pendientes</li><li><span class="check">&#10003;</span> 2 listas y 2 subtareas por tarea</li><li><span class="check">&#10003;</span> Vista de hoy y esta semana</li><li><span class="check">&#10003;</span> Sugerencias b\u00e1sicas de IA</li><li><span class="check">&#10003;</span> Racha y gamificaci\u00f3n</li><li><span class="x">&mdash;</span> Canvas visual</li><li><span class="x">&mdash;</span> Coach IA con chat</li><li><span class="x">&mdash;</span> Delegaci\u00f3n de tareas</li>',
+      free_cta: 'Empezar gratis',
+      pro_period: 'USD &middot; por mes',
+      pro_desc: 'El sistema completo para quienes trabajan en serio.',
+      pro_features: '<li><span class="check">&#10003;</span> Todo lo del plan Free</li><li><span class="check">&#10003;</span> Tareas, listas y subtareas ilimitadas</li><li><span class="check">&#10003;</span> Canvas visual infinito</li><li><span class="check">&#10003;</span> Coach IA personalizado con chat</li><li><span class="check">&#10003;</span> Volcado r\u00e1pido con IA</li><li><span class="check">&#10003;</span> Alertas de sobrecarga diaria</li><li><span class="check">&#10003;</span> Delegar y compartir tareas</li><li><span class="check">&#10003;</span> Soporte prioritario</li>',
+      pro_cta: 'Empezar con Pro &rarr;',
+      pro_note: 'Sin permanencia. Cancelas cuando quieres.',
+      recommended: 'Recomendado',
+      final_headline: 'Empieza hoy,<br/><span class="accent">es gratis.</span>',
+      final_sub: 'Sin instalaci\u00f3n. Sin tarjeta. Abres y empiezas.',
+      final_cta: 'Empezar gratis &rarr;',
+      footer_privacy: 'Privacidad', footer_terms: 'T\u00e9rminos', footer_contact: 'Contacto',
+      footer_copy: 'Hecho con &#9829; en Latam'
+    },
+    en: {
+      page_title: 'to done \u2726 \u2014 Get organized without thinking about organizing',
+      meta_desc: 'to done \u2014 Manage tasks with AI. Auto-prioritize, know how much time you have today, and end the day having done what matters.',
+      nav_product: 'Product', nav_plans: 'Plans', nav_login: 'Log in',
+      nav_cta: 'Start free &rarr;',
+      badge_ai: 'Built-in AI', badge_free: 'Free to start',
+      hero_headline: 'You have 40 tasks.<br/><span class="accent">Where do you start?</span>',
+      hero_sub: 'An AI-powered productivity system that helps you prioritize, organize your schedule, and delegate or share tasks.',
+      hero_cta: 'Start free &rarr;', hero_cta2: 'See features',
+      mockup_title: 'to done &mdash; Today',
+      day_label: 'Today &middot; 5h 30min', tasks_title: 'Pending', tasks_count: '5 tasks',
+      task1: 'Review proposal with team', task2: 'Reply to urgent emails',
+      task3: 'Call supplier before 6 PM', task4: 'Finish investor deck', task5: 'Update product roadmap',
+      pill_high: 'High', pill_med: 'Medium', pill_low: 'Low',
+      ai_suggestion: '<strong>AI:</strong> You have 8h 20min scheduled for today. Shall we move "Update roadmap" to tomorrow?',
+      feat_label: 'Features',
+      feat_title: 'Built for people who<br/><span class="accent">work at full speed.</span>',
+      feat_desc: 'Everything you need to stop thinking about how to organize and start doing.',
+      f1_title: 'Quick brain dump with AI',
+      f1_text: 'Write everything on your mind in one go. The AI detects priority, time, and date automatically &mdash; no fields to fill.',
+      qd_label: 'You type &rarr; AI organizes',
+      qd1: 'Call Juan tomorrow 30min', qd2: 'Submit report URGENT today', qd3: 'Review contracts when possible',
+      qd_tomorrow: 'Tomorrow', qd_today: 'Today', qd_nodate: 'No date',
+      f2_title: 'Real-time daily load',
+      f2_text: 'It tells you how much time you scheduled today. If you go over, it alerts you and suggests what to move &mdash; without you having to calculate.',
+      f3_title: 'Side visual canvas <span class="pro-badge">Pro</span>',
+      f3_text: 'Infinite space for sticky notes, checklists, and rich links to think and map ideas &mdash; right next to your list.',
+      f4_title: 'Personalized AI coach <span class="pro-badge">Pro</span>',
+      f4_text: 'A coach that analyzes your tasks, streak, and daily load to give you personalized tips. Chat with it to reorganize priorities.',
+      f5_title: 'Streak & gamification',
+      f5_text: 'Daily streak, confetti on completion, and celebration when you close the day. More of those days where you feel you got everything done.',
+      f6_title: 'Delegate and share tasks <span class="pro-badge">Pro</span>',
+      f6_text: 'Assign tasks to anyone via email. They get notified and you track progress without status meetings.',
+      cmp_label: 'Why to done',
+      cmp_title: 'It does what<br/><span class="accent">others don\'t.</span>',
+      cmp_feature: 'Feature', cmp_others: 'Other apps', cmp_yes: '&#10003; Yes',
+      c1_name: 'AI that interprets natural language', c1_other: 'You fill fields one by one',
+      c2_name: 'Daily load estimation', c2_other: 'You calculate it in your head',
+      c3_name: 'Overload alert', c3_other: 'You realize when it\'s too late',
+      c4_name: 'AI coach with personalized chat', c4_other: 'Doesn\'t exist',
+      c5_name: 'Quick brain dump with AI', c5_other: 'You have to write it perfectly',
+      c6_name: 'Integrated visual canvas', c6_other: 'You open another app, lose focus',
+      c7_name: 'Delegate and share tasks', c7_other: 'Follow-up meetings anyway',
+      price_label: 'Plans',
+      price_title: 'Start free.<br/><span class="accent">Grow when you\'re ready.</span>',
+      free_period: 'USD &middot; forever',
+      free_desc: 'To get started organizing without committing to anything.',
+      free_features: '<li><span class="check">&#10003;</span> Up to 25 pending tasks</li><li><span class="check">&#10003;</span> 2 lists and 2 subtasks per task</li><li><span class="check">&#10003;</span> Today and this week views</li><li><span class="check">&#10003;</span> Basic AI suggestions</li><li><span class="check">&#10003;</span> Streak & gamification</li><li><span class="x">&mdash;</span> Visual canvas</li><li><span class="x">&mdash;</span> AI coach with chat</li><li><span class="x">&mdash;</span> Task delegation</li>',
+      free_cta: 'Start free',
+      pro_period: 'USD &middot; per month',
+      pro_desc: 'The complete system for those who work seriously.',
+      pro_features: '<li><span class="check">&#10003;</span> Everything in the Free plan</li><li><span class="check">&#10003;</span> Unlimited tasks, lists, and subtasks</li><li><span class="check">&#10003;</span> Infinite visual canvas</li><li><span class="check">&#10003;</span> Personalized AI coach with chat</li><li><span class="check">&#10003;</span> Quick brain dump with AI</li><li><span class="check">&#10003;</span> Daily overload alerts</li><li><span class="check">&#10003;</span> Delegate and share tasks</li><li><span class="check">&#10003;</span> Priority support</li>',
+      pro_cta: 'Start with Pro &rarr;',
+      pro_note: 'No commitment. Cancel anytime.',
+      recommended: 'Recommended',
+      final_headline: 'Start today,<br/><span class="accent">it\'s free.</span>',
+      final_sub: 'No install. No credit card. Open and start.',
+      final_cta: 'Start free &rarr;',
+      footer_privacy: 'Privacy', footer_terms: 'Terms', footer_contact: 'Contact',
+      footer_copy: 'Made with &#9829; in Latam'
+    }
+  };
+
+  function detectLocale() {
+    var tz = '';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e) {}
+    var isArgentina = tz.indexOf('America/Argentina') === 0 || tz === 'America/Buenos_Aires';
+    var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    var isSpanish = lang.indexOf('es') === 0;
+    if (isArgentina) return 'es-AR';
+    if (isSpanish) return 'es';
+    return 'en';
+  }
+
+  function applyLocale() {
+    var locale = detectLocale();
+    if (locale === 'es-AR') return;
+
+    var t = i18n[locale] || i18n.en;
+
+    document.documentElement.lang = locale === 'en' ? 'en' : 'es';
+
+    var titleEl = document.querySelector('[data-i18n="page_title"]');
+    if (titleEl && t.page_title) document.title = t.page_title;
+
+    var metaDesc = document.querySelector('[data-i18n-attr]');
+    if (metaDesc && t.meta_desc) metaDesc.setAttribute('content', t.meta_desc);
+
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (key === 'page_title') return;
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n-html');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+
+    if (t.recommended) {
+      var style = document.createElement('style');
+      style.textContent = '.pricing-card.featured::before { content: "' + t.recommended + '" !important; }';
+      document.head.appendChild(style);
+    }
+  }
+
+  applyLocale();
+
 </script>
 </body>
 </html>
