@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://todone.com.ar/sitemap.xml
