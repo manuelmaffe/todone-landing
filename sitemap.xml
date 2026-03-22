@@ -3,11 +3,25 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://todone.com.ar/</loc>
+    <xhtml:link rel="alternate" hreflang="es-AR" href="https://todone.com.ar/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://todone.com.ar/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://todone.com.ar/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://todone.com.ar/" />
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://todone.com.ar/us/" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://todone.com.ar/us/" />
     <lastmod>2026-03-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://todone.com.ar/us/</loc>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://todone.com.ar/us/" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://todone.com.ar/us/" />
+    <xhtml:link rel="alternate" hreflang="es-AR" href="https://todone.com.ar/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://todone.com.ar/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://todone.com.ar/" />
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>
