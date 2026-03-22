@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacidad — to done</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --font-ui: -apple-system, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --bg: #FAF9F6; --surface: #FFFFFF; --border: #E8E4DD; --border-subtle: #EEEBE5;
+      --text: #1A1A1A; --text-secondary: #5C5650; --text-muted: #9B9389;
+      --coral: #D38B71; --grad: linear-gradient(135deg, #D38B71 0%, #C4944A 100%);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-ui); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 64px; padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2);
+      background: rgba(250,249,246,0.85); border-bottom: 1px solid rgba(232,228,221,0.6);
+    }
+    .nav-logo { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.5px; text-decoration: none; display: flex; align-items: baseline; }
+    .nav-logo-to { color: var(--text); }
+    .nav-logo-done { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-logo-star { color: var(--coral); font-size: 9px; vertical-align: super; margin-left: 1px; }
+    .nav-back { font-size: 14px; color: var(--text-muted); text-decoration: none; padding: 6px 14px; border-radius: 8px; transition: color 0.18s, background 0.18s; }
+    .nav-back:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+
+    .legal { max-width: 720px; margin: 0 auto; padding: 100px 24px 80px; }
+    .legal h1 { font-family: var(--font-display); font-weight: 700; font-size: 36px; letter-spacing: -1px; margin-bottom: 8px; }
+    .legal .updated { font-size: 13px; color: var(--text-muted); margin-bottom: 40px; }
+    .legal h2 { font-size: 18px; font-weight: 700; margin-top: 36px; margin-bottom: 10px; color: var(--text); }
+    .legal h3 { font-size: 15px; font-weight: 700; margin-top: 24px; margin-bottom: 8px; color: var(--text-secondary); }
+    .legal p, .legal li { font-size: 14px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 10px; }
+    .legal ul, .legal ol { padding-left: 24px; margin-bottom: 14px; }
+    .legal li { margin-bottom: 6px; }
+    .legal a { color: var(--coral); text-decoration: none; }
+    .legal a:hover { text-decoration: underline; }
+    .legal .highlight-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin: 20px 0; }
+    .legal .highlight-box p { margin-bottom: 0; }
+
+    footer { padding: 32px 48px; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto; }
+    .footer-logo { font-family: var(--font-display); font-weight: 800; font-size: 19px; }
+    .footer-logo-to { color: var(--text); }
+    .footer-logo-done { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .footer-logo-star { color: var(--coral); font-size: 9px; vertical-align: super; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.18s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { font-size: 12px; color: var(--text-muted); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .legal { padding: 88px 20px 60px; }
+      .legal h1 { font-size: 28px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 20px; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <span class="nav-logo-to">to </span><span class="nav-logo-done">done</span><span class="nav-logo-star">&#10022;</span>
+  </a>
+  <a href="/" class="nav-back">&larr; Volver</a>
+</nav>
+
+<article class="legal">
+  <h1>Pol&iacute;tica de Privacidad</h1>
+  <p class="updated">&Uacute;ltima actualizaci&oacute;n: 22 de marzo de 2026</p>
+
+  <p>Esta pol&iacute;tica describe c&oacute;mo <strong>to done</strong> (en adelante, &ldquo;la Aplicaci&oacute;n&rdquo;), operada desde la Rep&uacute;blica Argentina, recopila, usa, almacena y protege tus datos personales, en cumplimiento de la <strong>Ley 25.326 de Protecci&oacute;n de Datos Personales</strong>, su Decreto Reglamentario 1558/2001, y las disposiciones de la <strong>Agencia de Acceso a la Informaci&oacute;n P&uacute;blica (AAIP)</strong>.</p>
+
+  <h2>1. Responsable del tratamiento</h2>
+  <p>El responsable del tratamiento de datos personales es el titular de to done, con domicilio en la Rep&uacute;blica Argentina. Contacto: <a href="mailto:hola@todone.com.ar">hola@todone.com.ar</a>.</p>
+
+  <h2>2. Datos que recopilamos</h2>
+
+  <h3>2.1 Datos proporcionados por el usuario</h3>
+  <ul>
+    <li><strong>Cuenta:</strong> direcci&oacute;n de correo electr&oacute;nico y nombre (opcional) al registrarte.</li>
+    <li><strong>Contenido:</strong> tareas, subtareas, listas, notas y descripciones que cre&aacute;s dentro de la Aplicaci&oacute;n.</li>
+    <li><strong>Pagos:</strong> si contrat&aacute;s el plan Pro, los datos de pago son procesados directamente por <strong>Stripe, Inc.</strong> No almacenamos n&uacute;meros de tarjeta ni datos financieros sensibles.</li>
+  </ul>
+
+  <h3>2.2 Datos recopilados autom&aacute;ticamente</h3>
+  <ul>
+    <li>Tipo de dispositivo, navegador y sistema operativo.</li>
+    <li>Fecha y hora de acceso.</li>
+    <li>Datos de uso agregados (tareas completadas, frecuencia de uso) para mejorar el servicio.</li>
+  </ul>
+
+  <h2>3. Finalidad del tratamiento</h2>
+  <p>Tus datos se utilizan exclusivamente para:</p>
+  <ul>
+    <li>Proveer y mantener el servicio de gesti&oacute;n de tareas.</li>
+    <li>Personalizar la experiencia (sugerencias de IA, coach, estimaciones de tiempo).</li>
+    <li>Procesar pagos y gestionar suscripciones.</li>
+    <li>Enviar comunicaciones transaccionales (delegaci&oacute;n de tareas, invitaciones a listas compartidas, recuperaci&oacute;n de contrase&ntilde;a).</li>
+    <li>Mejorar la Aplicaci&oacute;n mediante an&aacute;lisis agregados y an&oacute;nimos.</li>
+  </ul>
+  <p><strong>No vendemos, alquilamos ni compartimos tus datos personales con terceros con fines comerciales o publicitarios.</strong></p>
+
+  <h2>4. Base legal del tratamiento</h2>
+  <p>El tratamiento de datos se basa en:</p>
+  <ul>
+    <li><strong>Consentimiento:</strong> al registrarte, consent&iacute;s el tratamiento de tus datos conforme a esta pol&iacute;tica (art. 5, Ley 25.326).</li>
+    <li><strong>Ejecuci&oacute;n contractual:</strong> el tratamiento es necesario para prestarte el servicio contratado.</li>
+    <li><strong>Inter&eacute;s leg&iacute;timo:</strong> mejoras del servicio y seguridad, siempre que no prevalezcan tus derechos fundamentales.</li>
+  </ul>
+
+  <h2>5. Almacenamiento y transferencia internacional</h2>
+  <p>Los datos se almacenan en servidores de <strong>Supabase</strong> (infraestructura en Estados Unidos). Esta transferencia internacional se realiza conforme al art. 12 de la Ley 25.326, dado que:</p>
+  <ul>
+    <li>El pa&iacute;s de destino ofrece un nivel adecuado de protecci&oacute;n, o</li>
+    <li>La transferencia se realiza con tu consentimiento expreso al aceptar estos t&eacute;rminos.</li>
+  </ul>
+  <p>Los pagos son procesados por <strong>Stripe, Inc.</strong> bajo sus propias pol&iacute;ticas de seguridad (PCI DSS Level 1).</p>
+
+  <h2>6. Plazo de conservaci&oacute;n</h2>
+  <p>Tus datos se conservan mientras tu cuenta est&eacute; activa. Si elimin&aacute;s tu cuenta, tus datos personales y contenido se eliminar&aacute;n en un plazo m&aacute;ximo de <strong>30 d&iacute;as h&aacute;biles</strong>. Podremos retener datos anonimizados con fines estad&iacute;sticos.</p>
+
+  <h2>7. Tus derechos (ARCO)</h2>
+  <div class="highlight-box">
+    <p>Como titular de los datos, ten&eacute;s derecho a:</p>
+  </div>
+  <ul>
+    <li><strong>Acceso:</strong> conocer qu&eacute; datos personales tenemos sobre vos (art. 14, Ley 25.326).</li>
+    <li><strong>Rectificaci&oacute;n:</strong> corregir datos inexactos o incompletos.</li>
+    <li><strong>Supresi&oacute;n:</strong> solicitar la eliminaci&oacute;n de tus datos cuando ya no sean necesarios.</li>
+    <li><strong>Oposici&oacute;n:</strong> oponerte al tratamiento en determinadas circunstancias.</li>
+    <li><strong>Portabilidad:</strong> solicitar una copia de tus datos en formato estructurado.</li>
+  </ul>
+  <p>Para ejercer estos derechos, escrib&iacute; a <a href="mailto:hola@todone.com.ar">hola@todone.com.ar</a>. Responderemos en un plazo m&aacute;ximo de <strong>10 d&iacute;as h&aacute;biles</strong> conforme al art. 14 inc. 2 de la Ley 25.326.</p>
+
+  <div class="highlight-box">
+    <p>La <strong>AGENCIA DE ACCESO A LA INFORMACI&Oacute;N P&Uacute;BLICA</strong>, en su car&aacute;cter de &Oacute;rgano de Control de la Ley 25.326, tiene la atribuci&oacute;n de atender las denuncias y reclamos que interpongan quienes resulten afectados en sus derechos por incumplimiento de las normas vigentes en materia de protecci&oacute;n de datos personales.</p>
+  </div>
+
+  <h2>8. Seguridad</h2>
+  <p>Implementamos medidas t&eacute;cnicas y organizativas razonables para proteger tus datos:</p>
+  <ul>
+    <li>Comunicaciones cifradas mediante HTTPS/TLS.</li>
+    <li>Autenticaci&oacute;n segura con tokens JWT.</li>
+    <li>Pol&iacute;ticas de acceso basadas en roles (Row Level Security) en la base de datos.</li>
+    <li>Procesamiento de pagos delegado a Stripe (PCI DSS Level 1).</li>
+  </ul>
+  <p>Ninguna transmisi&oacute;n por Internet es 100% segura. Nos comprometemos a notificarte cualquier brecha de seguridad que pueda afectar tus datos conforme a la normativa vigente.</p>
+
+  <h2>9. Cookies y tecnolog&iacute;as similares</h2>
+  <p>La Aplicaci&oacute;n utiliza almacenamiento local del navegador (localStorage) para guardar preferencias (tema, modo de vista, notas del canvas). No utilizamos cookies de terceros ni de seguimiento publicitario.</p>
+
+  <h2>10. Menores de edad</h2>
+  <p>La Aplicaci&oacute;n no est&aacute; dirigida a menores de 16 a&ntilde;os. No recopilamos intencionalmente datos de menores. Si detect&aacute;s que un menor ha proporcionado datos sin autorizaci&oacute;n parental, contact&aacute;nos para proceder a su eliminaci&oacute;n.</p>
+
+  <h2>11. Inteligencia Artificial</h2>
+  <p>Las funciones de IA (sugerencias, coach, estimaciones) procesan el contenido de tus tareas para brindarte recomendaciones personalizadas. Este procesamiento se realiza en tiempo real y no almacenamos conversaciones con el coach m&aacute;s all&aacute; de la sesi&oacute;n activa. Los datos enviados a la IA no se utilizan para entrenar modelos de terceros.</p>
+
+  <h2>12. Modificaciones</h2>
+  <p>Podremos actualizar esta pol&iacute;tica. Los cambios sustanciales se comunicar&aacute;n por email o dentro de la Aplicaci&oacute;n. El uso continuado del servicio tras la notificaci&oacute;n implica aceptaci&oacute;n de los cambios.</p>
+
+  <h2>13. Contacto</h2>
+  <p>Para consultas sobre privacidad o ejercer tus derechos:</p>
+  <p><strong>Email:</strong> <a href="mailto:hola@todone.com.ar">hola@todone.com.ar</a><br/>
+  <strong>Sitio web:</strong> <a href="https://todone.com.ar">todone.com.ar</a></p>
+</article>
+
+<footer>
+  <span class="footer-logo">
+    <span class="footer-logo-to">to </span><span class="footer-logo-done">done</span><span class="footer-logo-star">&#10022;</span>
+  </span>
+  <div class="footer-links">
+    <a href="/privacy">Privacidad</a>
+    <a href="/terms">T&eacute;rminos</a>
+    <a href="mailto:hola@todone.com.ar">Contacto</a>
+  </div>
+  <span class="footer-copy">Hecho con &#9829; en Latam</span>
+</footer>
+
+</body>
+</html>
